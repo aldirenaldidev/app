@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">BursaKu</string>
+    <string name="disclaimer">Bukan rekomendasi investasi. Data delay ±15 menit. Sumber: Yahoo Finance &amp; RSS publik.</string>
+    <string name="market_open">BUKA</string>
+    <string name="market_closed">TUTUP</string>
+</resources>

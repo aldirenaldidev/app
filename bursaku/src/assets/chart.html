@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+<script src="lightweight-charts.js"></script>
+<style>
+  html,body{margin:0;padding:0;background:transparent;color:#d1d4dc;font-family:-apple-system,Roboto,sans-serif}
+  #price{height:46vh;width:100%}
+  .osc{height:22vh;width:100%}
+  .lbl{font-size:12px;color:#8B93A7;padding:8px 4px 2px 4px;font-weight:bold}
+  .lbl .val{color:#FFFFFF;float:right;font-weight:normal}
+</style>
+</head>
+<body>
+<div class="lbl" id="lblPrice">Harga</div>
+<div id="price"></div>
+<div id="oscZone"></div>
+<script>
+var UP='#16C784', DN='#EA3943', GRID='rgba(139,147,167,0.14)', TXT='#8B93A7';
+function baseOpts(){
+  return {
+    layout:{background:{type:'solid',color:'transparent'},textColor:TXT,fontSize:11},
+    grid:{vertLines:{color:GRID},horzLines:{color:GRID}},
+    timeScale:{timeVisible:false,borderColor:'rgba(139,147,167,0.25)'},
+    rightPriceScale:{borderColor:'rgba(139,147,167,0.25)'}
+  };
+}
+function render(payload){
+  var d = JSON.parse(payload);
+  document.getElementById('oscZone').innerHTML='';
+  // ---------- price + overlays ----------
+  var c1 = LightweightCharts.createChart(document.getElementById('price'), baseOpts());
+  var cs = c1.addCandlestickSeries({upColor:UP,downColor:DN,wickUpColor:UP,wickDownColor:DN,borderVisible:false});
+  cs.setData(d.candles);
+  var vol = c1.addHistogramSeries({priceFormat:{type:'volume'},priceScaleId:'vol'});
+  c1.priceScale('vol').applyOptions({scaleMargins:{top:0.84,bottom:0}});
+  vol.setData(d.volume.map(function(v,i){return {time:d.candles[i].time,value:v.value,color:v.up?'rgba(22,199,132,0.45)':'rgba(234,57,67,0.45)'};}));
+  (d.overlays.lines||[]).forEach(function(L){
+    if(!L.data||!L.data.length) return;
+    var s=c1.addLineSeries({color:L.color,lineWidth:L.width||1,lineStyle:L.style||0,
+      priceLineVisible:false,lastValueVisible:false,crosshairMarkerVisible:false});
+    s.setData(L.data);
+  });
+  if(d.overlays.sarMarkers && d.overlays.sarMarkers.length){
+    cs.setMarkers(d.overlays.sarMarkers.map(function(m){
+      return {time:m.time,position:m.position,color:'#F0B90B',shape:'circle',text:''};
+    }));
+  }
+  c1.timeScale().fitContent();
+  var charts=[c1];
+  // ---------- oscillator panels (max 2) ----------
+  (d.oscillators||[]).forEach(function(osc,idx){
+    var wrap=document.createElement('div');
+    var lbl=document.createElement('div'); lbl.className='lbl';
+    lbl.innerHTML=esc(osc.name)+'<span class="val">'+esc(osc.last||'')+'</span>';
+    var el=document.createElement('div'); el.className='osc';
+    wrap.appendChild(lbl); wrap.appendChild(el);
+    document.getElementById('oscZone').appendChild(wrap);
+    var c=LightweightCharts.createChart(el, baseOpts());
+    (osc.bands||[]).forEach(function(b){
+      var tmp=c.addLineSeries({color:b.color,lineWidth:1,lineStyle:2,
+        priceLineVisible:false,lastValueVisible:true,crosshairMarkerVisible:false});
+      var t0=d.candles[0].time, t1=d.candles[d.candles.length-1].time;
+      tmp.setData([{time:t0,value:b.value},{time:t1,value:b.value}]);
+    });
+    if(osc.hist && osc.hist.length){
+      var hs=c.addHistogramSeries({priceLineVisible:false,lastValueVisible:false});
+      hs.setData(osc.hist.map(function(v){return {time:v.time,value:v.value,
+        color:v.value>=0?'rgba(22,199,132,0.65)':'rgba(234,57,67,0.65)'};}));
+    }
+    (osc.lines||[]).forEach(function(L){
+      if(!L.data||!L.data.length) return;
+      var s=c.addLineSeries({color:L.color,lineWidth:L.width||1,
+        priceLineVisible:false,lastValueVisible:true,crosshairMarkerVisible:false});
+      s.setData(L.data);
+    });
+    c.timeScale().fitContent();
+    charts.push(c);
+  });
+  // ---------- crosshair sync ----------
+  charts.slice(1).forEach(function(c){
+    c1.subscribeCrosshairMove(function(p){
+      if(!p||!p.time){try{c.setCrosshairPosition(null,null,null);}catch(e){}return;}
+      try{c.setCrosshairPosition(null,p.time,null);}catch(e){}
+    });
+  });
+}
+function esc(s){return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;');}
+</script>
+</body>
+</html>

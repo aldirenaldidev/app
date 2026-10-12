@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Gradien Senja Berani: oranye -> marun, untuk hero card & pill aktif -->
+<gradient xmlns:android="http://schemas.android.com/apk/res/android"
+    android:angle="135"
+    android:startColor="#FF7A1A"
+    android:endColor="#7A1F1F"
+    android:type="linear" />

@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/wRoot"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@drawable/bg_card"
+    android:padding="12dp">
+
+    <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+        android:orientation="horizontal" android:gravity="center_vertical">
+        <TextView android:layout_width="0dp" android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="IHSG" android:textSize="13sp" android:textStyle="bold"
+            android:textColor="#8B93A7" />
+        <TextView android:id="@+id/wIhsgVal"
+            android:layout_width="wrap_content" android:layout_height="wrap_content"
+            android:text="—" android:textSize="18sp" android:textStyle="bold"
+            android:textColor="#FFFFFF" />
+        <TextView android:id="@+id/wIhsgChg"
+            android:layout_width="wrap_content" android:layout_height="wrap_content"
+            android:text="—" android:textSize="12sp" android:textStyle="bold"
+            android:textColor="#16C784" android:background="@drawable/pill_up"
+            android:paddingLeft="8dp" android:paddingRight="8dp"
+            android:paddingTop="4dp" android:paddingBottom="4dp"
+            android:layout_marginStart="8dp" />
+    </LinearLayout>
+
+    <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+        android:orientation="horizontal" android:layout_marginTop="8dp">
+        <TextView android:id="@+id/wSym1" android:layout_width="0dp" android:layout_height="wrap_content"
+            android:layout_weight="1" android:text="" android:textSize="12sp"
+            android:textStyle="bold" android:textColor="#FFFFFF" />
+        <TextView android:id="@+id/wPrice1" android:layout_width="0dp" android:layout_height="wrap_content"
+            android:layout_weight="1" android:text="" android:textSize="12sp"
+            android:textColor="#FFFFFF" android:gravity="end" />
+        <TextView android:id="@+id/wChg1" android:layout_width="0dp" android:layout_height="wrap_content"
+            android:layout_weight="1" android:text="" android:textSize="12sp"
+            android:textStyle="bold" android:textColor="#16C784" android:gravity="end" />
+    </LinearLayout>
+
+    <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+        android:orientation="horizontal" android:layout_marginTop="4dp">
+        <TextView android:id="@+id/wSym2" android:layout_width="0dp" android:layout_height="wrap_content"
+            android:layout_weight="1" android:text="" android:textSize="12sp"
+            android:textStyle="bold" android:textColor="#FFFFFF" />
+        <TextView android:id="@+id/wPrice2" android:layout_width="0dp" android:layout_height="wrap_content"
+            android:layout_weight="1" android:text="" android:textSize="12sp"
+            android:textColor="#FFFFFF" android:gravity="end" />
+        <TextView android:id="@+id/wChg2" android:layout_width="0dp" android:layout_height="wrap_content"
+            android:layout_weight="1" android:text="" android:textSize="12sp"
+            android:textStyle="bold" android:textColor="#16C784" android:gravity="end" />
+    </LinearLayout>
+
+    <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+        android:orientation="horizontal" android:layout_marginTop="4dp">
+        <TextView android:id="@+id/wSym3" android:layout_width="0dp" android:layout_height="wrap_content"
+            android:layout_weight="1" android:text="" android:textSize="12sp"
+            android:textStyle="bold" android:textColor="#FFFFFF" />
+        <TextView android:id="@+id/wPrice3" android:layout_width="0dp" android:layout_height="wrap_content"
+            android:layout_weight="1" android:text="" android:textSize="12sp"
+            android:textColor="#FFFFFF" android:gravity="end" />
+        <TextView android:id="@+id/wChg3" android:layout_width="0dp" android:layout_height="wrap_content"
+            android:layout_weight="1" android:text="" android:textSize="12sp"
+            android:textStyle="bold" android:textColor="#16C784" android:gravity="end" />
+    </LinearLayout>
+
+    <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+        android:orientation="horizontal" android:layout_marginTop="4dp">
+        <TextView android:id="@+id/wSym4" android:layout_width="0dp" android:layout_height="wrap_content"
+            android:layout_weight="1" android:text="" android:textSize="12sp"
+            android:textStyle="bold" android:textColor="#FFFFFF" />
+        <TextView android:id="@+id/wPrice4" android:layout_width="0dp" android:layout_height="wrap_content"
+            android:layout_weight="1" android:text="" android:textSize="12sp"
+            android:textColor="#FFFFFF" android:gravity="end" />
+        <TextView android:id="@+id/wChg4" android:layout_width="0dp" android:layout_height="wrap_content"
+            android:layout_weight="1" android:text="" android:textSize="12sp"
+            android:textStyle="bold" android:textColor="#16C784" android:gravity="end" />
+    </LinearLayout>
+
+    <TextView android:id="@+id/wTime"
+        android:layout_width="match_parent" android:layout_height="wrap_content"
+        android:text="BursaKu" android:textSize="10sp" android:textColor="#8B93A7"
+        android:gravity="center" android:layout_marginTop="8dp" />
+</LinearLayout>

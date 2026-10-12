@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Kartu watchlist untuk preview di home (dashboard v2 Senja Berani):
+     logo 40dp + ticker/nama + harga/% + sparkline -->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:gravity="center_vertical"
+    android:background="@drawable/bg_card"
+    android:padding="14dp"
+    android:layout_marginBottom="10dp">
+
+    <FrameLayout
+        android:layout_width="44dp"
+        android:layout_height="44dp">
+        <ImageView
+            android:id="@+id/ivHLogo"
+            android:layout_width="44dp"
+            android:layout_height="44dp"
+            android:scaleType="fitCenter"
+            android:padding="4dp"
+            android:background="@drawable/logo_bg"
+            android:contentDescription="Logo emiten" />
+        <TextView
+            android:id="@+id/tvHLogoInit"
+            android:layout_width="44dp"
+            android:layout_height="44dp"
+            android:gravity="center"
+            android:text="BB"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:textColor="#FFFFFF"
+            android:background="@drawable/pill_senja" />
+    </FrameLayout>
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:orientation="vertical"
+        android:layout_marginStart="12dp">
+        <TextView android:id="@+id/tvHSym"
+            android:layout_width="wrap_content" android:layout_height="wrap_content"
+            android:text="BBCA" android:textSize="16sp" android:textStyle="bold"
+            android:textColor="#FFFFFF" />
+        <TextView android:id="@+id/tvHName"
+            android:layout_width="wrap_content" android:layout_height="wrap_content"
+            android:text="Bank Central Asia" android:textSize="12sp"
+            android:textColor="#9A8FA8" android:singleLine="true" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="end">
+        <TextView android:id="@+id/tvHPrice"
+            android:layout_width="wrap_content" android:layout_height="wrap_content"
+            android:text="10.250" android:textSize="15sp" android:textStyle="bold"
+            android:textColor="#FFFFFF" />
+        <TextView android:id="@+id/tvHChg"
+            android:layout_width="wrap_content" android:layout_height="wrap_content"
+            android:text="+1,49%" android:textSize="13sp" android:textStyle="bold"
+            android:textColor="#16C784" android:layout_marginTop="2dp" />
+    </LinearLayout>
+
+    <com.flexurio.bursaku.SparkView
+        android:id="@+id/sparkH"
+        android:layout_width="90dp"
+        android:layout_height="44dp"
+        android:layout_marginStart="10dp" />
+</LinearLayout>
