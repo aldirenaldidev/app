@@ -1,0 +1,204 @@
+<!DOCTYPE html><html lang="id"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Cek BSU</title><style>
+
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:-apple-system,'Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif;background:#F4F6FB;color:#1E293B;width:100%;min-height:100vh;margin:0 auto}
+.statusbar{height:44px;background:#0F2E7A;color:#fff;display:flex;align-items:center;justify-content:space-between;padding:0 22px;font-size:13px;font-weight:600}
+.appbar{background:linear-gradient(135deg,#0F2E7A 0%,#1E56C8 100%);color:#fff;padding:14px 18px 20px}
+.appbar .row{display:flex;align-items:center;gap:12px}
+.logo{width:46px;height:46px;border-radius:14px;background:#fff;display:flex;align-items:center;justify-content:center;font-weight:800;color:#0F2E7A;font-size:15px;flex-shrink:0}
+.appbar h1{font-size:19px;font-weight:700}
+.appbar p{font-size:12px;opacity:.85;margin-top:2px}
+.appbar .back{width:34px;height:34px;border-radius:10px;background:rgba(255,255,255,.18);display:flex;align-items:center;justify-content:center;font-size:18px;color:#fff}
+.content{padding:16px 16px 96px}
+.card{background:#fff;border-radius:16px;padding:16px;box-shadow:0 2px 12px rgba(15,46,122,.07);margin-bottom:14px}
+.card h3{font-size:15px;font-weight:700;margin-bottom:8px}
+.card p{font-size:13px;line-height:1.65;color:#475569}
+.hero{background:linear-gradient(135deg,#0F2E7A,#2B6CE5);border-radius:20px;padding:20px;color:#fff;margin-bottom:14px;box-shadow:0 8px 24px rgba(15,46,122,.28);position:relative;overflow:hidden}
+.hero::after{content:'';position:absolute;right:-40px;top:-40px;width:160px;height:160px;border-radius:50%;background:rgba(255,255,255,.08)}
+.hero .badge{display:inline-block;background:#D7263D;color:#fff;font-size:11px;font-weight:700;padding:5px 12px;border-radius:20px;margin-bottom:10px}
+.hero h2{font-size:15px;font-weight:600;opacity:.9}
+.hero .nominal{font-size:34px;font-weight:800;margin:4px 0}
+.hero .sub{font-size:12.5px;opacity:.85}
+.disclaimer{background:#FFFBEB;border:1.5px solid #F59E0B;border-radius:14px;padding:12px 14px;margin-bottom:14px;display:flex;gap:10px}
+.disclaimer .ic{font-size:20px;flex-shrink:0}
+.disclaimer p{font-size:12px;line-height:1.6;color:#92400E}
+.disclaimer b{color:#78350F}
+.menu-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;margin-bottom:6px}
+.menu{background:#fff;border-radius:16px;padding:16px 8px;text-align:center;box-shadow:0 2px 12px rgba(15,46,122,.07)}
+.menu .mi{width:46px;height:46px;border-radius:14px;margin:0 auto 8px;display:flex;align-items:center;justify-content:center;font-size:22px;color:#fff;font-weight:700}
+.menu span{font-size:11.5px;font-weight:600;color:#334155;line-height:1.35;display:block}
+.check{display:flex;gap:12px;align-items:flex-start;padding:13px 0;border-bottom:1px solid #F1F5F9}
+.check:last-child{border-bottom:none;padding-bottom:2px}
+.check .ck{width:30px;height:30px;border-radius:50%;background:#DCFCE7;color:#16A34A;display:flex;align-items:center;justify-content:center;font-size:16px;font-weight:700;flex-shrink:0}
+.check b{font-size:13.5px;display:block;margin-bottom:3px}
+.check p{font-size:12px;color:#64748B;line-height:1.55}
+.tl{position:relative;padding-left:34px}
+.tl::before{content:'';position:absolute;left:11px;top:10px;bottom:10px;width:2px;background:#E2E8F0}
+.tl-item{position:relative;padding:0 0 20px}
+.tl-item:last-child{padding-bottom:2px}
+.tl-dot{position:absolute;left:-34px;top:2px;width:24px;height:24px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;color:#fff}
+.st{display:inline-block;font-size:10.5px;font-weight:700;padding:4px 10px;border-radius:12px;margin-top:6px}
+.st.done{background:#DCFCE7;color:#15803D}.st.run{background:#DBEAFE;color:#1D4ED8}.st.wait{background:#F1F5F9;color:#64748B}.st.info{background:#FEF3C7;color:#B45309}
+.tl-item b{font-size:14px}.tl-item p{font-size:12.5px;color:#64748B;line-height:1.6;margin-top:3px}
+.link{display:flex;align-items:center;gap:12px;padding:13px 0;border-bottom:1px solid #F1F5F9}
+.link:last-child{border-bottom:none}
+.link .li{width:46px;height:46px;border-radius:14px;display:flex;align-items:center;justify-content:center;color:#fff;font-weight:800;font-size:16px;flex-shrink:0}
+.link .lt{flex:1}.link .lt b{font-size:13.5px;display:block}.link .lt span{font-size:11.5px;color:#64748B}
+.open{background:#EFF6FF;color:#1D4ED8;font-size:12px;font-weight:700;padding:8px 14px;border-radius:10px;border:none}
+.faq{border-bottom:1px solid #F1F5F9;padding:14px 0}
+.faq:last-child{border:none}
+.faq .q{display:flex;justify-content:space-between;align-items:center;font-size:13.5px;font-weight:700;gap:8px}
+.faq .chev{color:#94A3B8;font-size:14px;flex-shrink:0}
+.faq .a{font-size:12.5px;color:#475569;line-height:1.7;margin-top:8px}
+table.desil{width:100%;border-collapse:collapse;font-size:12px;margin-top:8px}
+table.desil th{background:#0F2E7A;color:#fff;padding:9px 8px;text-align:left;font-size:11.5px}
+table.desil th:first-child{border-radius:10px 0 0 0}table.desil th:last-child{border-radius:0 10px 0 0}
+table.desil td{padding:9px 8px;border-bottom:1px solid #F1F5F9;line-height:1.5;vertical-align:top}
+table.desil tr.hl td{background:#EFF6FF}
+.pill{display:inline-block;font-size:10px;font-weight:700;padding:3px 9px;border-radius:10px}
+.pill.g{background:#DCFCE7;color:#15803D}.pill.y{background:#FEF3C7;color:#B45309}.pill.r{background:#F1F5F9;color:#64748B}
+.steps{counter-reset:s}
+.step{display:flex;gap:12px;margin-bottom:14px}
+.step .n{width:28px;height:28px;border-radius:50%;background:#0F2E7A;color:#fff;font-size:13px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.step p{font-size:12.5px;line-height:1.65;color:#475569}.step p b{color:#1E293B}
+.bottomnav{position:fixed;bottom:0;left:50%;transform:translateX(-50%);width:390px;background:#fff;border-top:1px solid #E2E8F0;display:flex;padding:10px 0 22px;box-shadow:0 -2px 16px rgba(0,0,0,.05)}
+.nav-it{flex:1;text-align:center;font-size:10.5px;color:#94A3B8;font-weight:600}
+.nav-it .ni{font-size:21px;display:block;margin-bottom:3px}
+.nav-it.active{color:#0F2E7A}
+.note{background:#EFF6FF;border-radius:14px;padding:12px 14px;margin-bottom:14px}
+.note p{font-size:12px;line-height:1.65;color:#1E40AF}
+.sect{font-size:14px;font-weight:700;margin:18px 2px 10px;color:#0F2E7A}
+
+
+.screen{display:block}
+.menu{cursor:pointer}
+.faq .q{cursor:pointer}
+.faq .a{display:block}
+.about-logo{width:72px;height:72px;border-radius:20px;background:#fff;display:flex;align-items:center;justify-content:center;font-weight:800;color:#0F2E7A;font-size:24px;margin:0 auto 14px;box-shadow:0 2px 12px rgba(15,46,122,.15)}
+
+</style></head><body style="width:100%;max-width:480px">
+<section class="screen" id="scr-beranda" style="display:none"><div class="appbar"><div class="row"><div><h1>Cek BSU</h1><p>Panduan Bantuan Subsidi Upah 2026</p></div><div class="back" data-go="tentang" style="margin-left:auto">ⓘ</div></div></div><div class="content">
+<div class="hero">
+  <span class="badge">PROGRAM PEMERINTAH</span>
+  <h2>Total Bantuan per Penerima</h2>
+  <div class="nominal">Rp 600.000</div>
+  <div class="sub">Rp 300.000 × 2 bulan &nbsp;•&nbsp; disalurkan via rekening / PosPay</div>
+</div>
+<div class="disclaimer"><span class="ic">⚠️</span>
+<p><b>Bukan aplikasi resmi pemerintah.</b> Cek BSU adalah aplikasi panduan informasi. Data resmi hanya di <b>bsu.kemnaker.go.id</b>.</p></div>
+<div class="sect">Menu Utama</div>
+<div class="menu-grid">
+<div class="menu" data-go="syarat"><div class="mi" style="background:#16A34A">✅</div><span>Syarat Penerima</span></div>
+<div class="menu" data-go="jadwal"><div class="mi" style="background:#1E56C8">🗓️</div><span>Jadwal Pencairan</span></div>
+<div class="menu" data-go="desil"><div class="mi" style="background:#7C3AED">📊</div><span>Cek Desil</span></div>
+<div class="menu" data-go="tautan"><div class="mi" style="background:#D7263D">🔗</div><span>Tautan Resmi</span></div>
+<div class="menu" data-go="berita"><div class="mi" style="background:#F59E0B">📰</div><span>Berita & Update</span></div>
+<div class="menu" data-go="faq"><div class="mi" style="background:#0EA5E9">❓</div><span>FAQ</span></div>
+</div><div class="sect">Cara Cek Status Penerima</div>
+<div class="card">
+  <div class="step"><div class="n">1</div><p>Buka situs resmi <b>bsu.kemnaker.go.id</b></p></div>
+  <div class="step"><div class="n">2</div><p>Masukkan <b>NIK 16 digit</b> sesuai KTP</p></div>
+  <div class="step"><div class="n">3</div><p>Isi <b>kode captcha</b>, lalu klik <b>Cek Status</b></p></div>
+</div>
+<div class="note"><p>💡 <b>Tips:</b> Tidak perlu daftar mandiri — data calon penerima diambil langsung dari BPJS Ketenagakerjaan. Waspada tautan palsu yang meminta data pribadi.</p></div>
+</div></section>
+<section class="screen" id="scr-syarat" style="display:none"><div class="appbar"><div class="row"><div class="back" data-back>‹</div><div><h1>Syarat Penerima</h1><p>Kriteria calon penerima BSU 2026</p></div></div></div><div class="content">
+<div class="card"><h3>📋 5 Kriteria Utama</h3><p>Acuan ketentuan Kemnaker pada penyaluran sebelumnya. Ketentuan resmi 2026 mengikuti pengumuman pemerintah.</p>
+<div style="margin-top:6px"><div class="check"><div class="ck">✓</div><div><b>Warga Negara Indonesia</b><p>Memiliki NIK KTP elektronik yang valid dan terdaftar di Dukcapil.</p></div></div><div class="check"><div class="ck">✓</div><div><b>Peserta aktif BPJS Ketenagakerjaan</b><p>Kategori Pekerja Penerima Upah (PU), terdaftar dan rutin membayar iuran hingga batas waktu yang ditentukan.</p></div></div><div class="check"><div class="ck">✓</div><div><b>Gaji maksimal Rp 3.500.000/bulan</b><p>Atau mengikuti UMP/UMK wilayah bila lebih tinggi, sesuai ketentuan Kemnaker.</p></div></div><div class="check"><div class="ck">✓</div><div><b>Belum menerima bansos lain</b><p>Diprioritaskan bagi yang belum menerima PKH atau bantuan sosial reguler lain pada periode yang sama.</p></div></div><div class="check"><div class="ck">✓</div><div><b>Bukan ASN, TNI, atau Polri</b><p>Program ini khusus pekerja/buruh sektor formal di luar aparatur negara.</p></div></div></div></div>
+<div class="note"><p>ℹ️ <b>Tidak ada pendaftaran mandiri.</b> Perusahaan memastikan karyawan terdaftar aktif di BPJS Ketenagakerjaan — verifikasi dilakukan otomatis oleh sistem.</p></div>
+</div></section>
+<section class="screen" id="scr-jadwal" style="display:none"><div class="appbar"><div class="row"><div class="back" data-back>‹</div><div><h1>Jadwal & Tahapan</h1><p>Alur penyaluran BSU</p></div></div></div><div class="content">
+<div class="disclaimer"><span class="ic">📢</span>
+<p><b>Jadwal resmi BSU 2026 belum diumumkan</b> pemerintah. Tahapan di bawah mengacu pada pola penyaluran sebelumnya — pantau kanal resmi.</p></div>
+<div class="card"><h3>Alur Penyaluran</h3><div class="tl" style="margin-top:12px"><div class="tl-item"><div class="tl-dot" style="background:#16A34A">1</div><b>Pendataan peserta BPJS</b><p>BPJS Ketenagakerjaan menghimpun data pekerja penerima upah yang memenuhi batas gaji.</p><span class="st done">Selesai</span></div><div class="tl-item"><div class="tl-dot" style="background:#1D4ED8">2</div><b>Verifikasi & validasi Kemnaker</b><p>Data disaring: NIK valid, iuran aktif, bukan ASN/TNI/Polri, belum terima bansos lain.</p><span class="st run">Berjalan</span></div><div class="tl-item"><div class="tl-dot" style="background:#64748B">3</div><b>Penetapan daftar penerima</b><p>Kemnaker menetapkan daftar final penerima BSU 2026.</p><span class="st wait">Menunggu</span></div><div class="tl-item"><div class="tl-dot" style="background:#64748B">4</div><b>Penyaluran ke rekening</b><p>Dana Rp 600.000 disalurkan sekaligus via bank Himbara / rekening terdaftar / PosPay.</p><span class="st wait">Menunggu</span></div><div class="tl-item"><div class="tl-dot" style="background:#64748B">5</div><b>Cek status mandiri</b><p>Pekerja mengecek status di bsu.kemnaker.go.id dengan NIK.</p><span class="st wait">Menunggu</span></div></div></div>
+</div></section>
+<section class="screen" id="scr-tautan" style="display:none"><div class="appbar"><div class="row"><div class="back" data-back>‹</div><div><h1>Tautan Resmi</h1><p>Hanya buka situs & aplikasi resmi</p></div></div></div><div class="content">
+<div class="card"><h3>🔗 Daftar Tautan</h3><div style="margin-top:4px"><div class="link"><div class="li" style="background:#0F2E7A">BK</div><div class="lt"><b>Cek Status BSU</b><span>bsu.kemnaker.go.id</span></div><button class="open" data-ext="https://bsu.kemnaker.go.id">Buka ↗</button></div><div class="link"><div class="li" style="background:#16A34A">BJ</div><div class="lt"><b>BPJS Ketenagakerjaan</b><span>bpjsketenagakerjaan.go.id</span></div><button class="open" data-ext="https://www.bpjsketenagakerjaan.go.id">Buka ↗</button></div><div class="link"><div class="li" style="background:#1E56C8">JM</div><div class="lt"><b>Aplikasi JMO</b><span>Google Play Store — Jamsostek Mobile</span></div><button class="open" data-ext="https://play.google.com/store/search?q=jmo%20bpjs%20ketenagakerjaan&c=apps">Buka ↗</button></div><div class="link"><div class="li" style="background:#F59E0B">PP</div><div class="lt"><b>PosPay / Kantor Pos</b><span>posindonesia.co.id</span></div><button class="open" data-ext="https://www.posindonesia.co.id">Buka ↗</button></div><div class="link"><div class="li" style="background:#7C3AED">KM</div><div class="lt"><b>Cek Bansos Kemensos</b><span>cekbansos.kemensos.go.id</span></div><button class="open" data-ext="https://cekbansos.kemensos.go.id">Buka ↗</button></div><div class="link"><div class="li" style="background:#D7263D">KN</div><div class="lt"><b>Kemnaker RI</b><span>kemnaker.go.id</span></div><button class="open" data-ext="https://kemnaker.go.id">Buka ↗</button></div></div></div>
+<div class="disclaimer"><span class="ic">🛡️</span>
+<p><b>Waspada penipuan!</b> Situs resmi tidak pernah meminta transfer uang, pulsa, atau kode OTP. Laporkan tautan mencurigakan ke kanal resmi Kemnaker.</p></div>
+</div></section>
+<section class="screen" id="scr-berita" style="display:none"><div class="appbar"><div class="row"><div class="back" data-back>‹</div><div><h1>Berita & Update</h1><p>Kabar resmi dari kanal pemerintah</p></div></div></div>
+<div class="disclaimer"><span class="ic">📰</span>
+<p><b>Info terkini.</b> Kabar resmi BSU hanya dari kanal pemerintah. Aplikasi ini merangkum tautan berita resmi.</p></div>
+<div class="card"><h3>📰 Berita & Update Resmi</h3>
+<div class="link"><div class="li" style="background:#0F2E7A">KN</div><div class="lt"><b>Berita Kemnaker RI</b><span>kemnaker.go.id/berita</span></div><button class="open" data-ext="https://kemnaker.go.id/berita">Buka ↗</button></div>
+<div class="link"><div class="li" style="background:#16A34A">BJ</div><div class="lt"><b>Berita BPJS Ketenagakerjaan</b><span>bpjsketenagakerjaan.go.id/berita</span></div><button class="open" data-ext="https://www.bpjsketenagakerjaan.go.id/berita.html">Buka ↗</button></div>
+<div class="link"><div class="li" style="background:#7C3AED">KM</div><div class="lt"><b>Berita Kemensos RI</b><span>kemensos.go.id</span></div><button class="open" data-ext="https://kemensos.go.id">Buka ↗</button></div>
+</div>
+<div class="note"><p>💡 <b>Tips:</b> Waspadai judul berita bombastis dari situs tidak dikenal. Selalu verifikasi ke situs resmi di atas.</p></div>
+</section>
+<section class="screen" id="scr-faq" style="display:none"><div class="appbar"><div class="row"><div class="back" data-back>‹</div><div><h1>FAQ</h1><p>Pertanyaan yang sering ditanyakan</p></div></div></div><div class="content"><div class="card"><h3>❓ Tanya Jawab</h3><div style="margin-top:6px"><div class="faq"><div class="q"><span>Apakah saya perlu mendaftar BSU secara mandiri?</span><span class="chev">▾</span></div><div class="a">Tidak perlu. Data calon penerima diambil langsung dari BPJS Ketenagakerjaan. Pastikan perusahaan mendaftarkan Anda sebagai peserta aktif dan iuran dibayar rutin.</div></div><div class="faq"><div class="q"><span>Berapa nominal BSU yang diterima?</span><span class="chev">▸</span></div><div class="a" style="display:none">Total <b>Rp 600.000</b> per penerima (Rp 300.000 × 2 bulan), disalurkan sekaligus melalui rekening bank Himbara, rekening terdaftar, atau PosPay bagi yang belum punya rekening.</div></div><div class="faq"><div class="q"><span>Kapan BSU 2026 cair?</span><span class="chev">▸</span></div><div class="a" style="display:none">Jadwal resmi <b>belum diumumkan</b> pemerintah. Pantau pengumuman di bsu.kemnaker.go.id dan kanal resmi Kemnaker. Waspadai kabar tanggal pasti dari sumber tidak resmi.</div></div><div class="faq"><div class="q"><span>Data saya tidak muncul / tidak sesuai, apa yang harus dilakukan?</span><span class="chev">▸</span></div><div class="a" style="display:none">Pastikan NIK valid dan Anda peserta aktif BPJS Ketenagakerjaan. Hubungi HRD perusahaan untuk memastikan data kepesertaan, atau datang ke kantor BPJS Ketenagakerjaan terdekat.</div></div><div class="faq"><div class="q"><span>Apakah aplikasi Cek BSU ini resmi dari pemerintah?</span><span class="chev">▸</span></div><div class="a" style="display:none"><b>Bukan.</b> Cek BSU adalah aplikasi panduan informasi independen. Data resmi hanya di bsu.kemnaker.go.id dan kanal pemerintah lainnya.</div></div></div></div></div></section>
+<section class="screen" id="scr-desil" style="display:none"><div class="appbar"><div class="row"><div class="back" data-back>‹</div><div><h1>Cek Desil</h1><p>Klasifikasi kesejahteraan DTSEN</p></div></div></div><div class="content">
+<div class="card"><h3>📊 Apa itu Desil?</h3>
+<p>Desil adalah pengelompokan tingkat kesejahteraan keluarga dalam <b>Data Tunggal Sosial Ekonomi Nasional (DTSEN)</b> — integrasi DTKS, Regsosek, dan P3KE yang diselaraskan BPS.</p>
+<p style="margin-top:8px">Masyarakat dibagi ke dalam <b>10 kelompok</b>: Desil 1 = kesejahteraan terendah, Desil 10 = tertinggi. Desil menentukan kelayakan berbagai program bansos pemerintah.</p></div>
+<div class="card"><h3>Tabel Kategori Desil</h3>
+<table class="desil"><tr><th>Desil</th><th>Kategori</th><th>Potensi Bansos</th><th>Prioritas</th></tr><tr class="hl"><td><b>Desil 1</b></td><td>Sangat miskin</td><td>PKH, BPNT, beras</td><td><span class="pill g">Sangat tinggi</span></td></tr><tr class="hl"><td><b>Desil 2–3</b></td><td>Miskin</td><td>PKH, BPNT</td><td><span class="pill g">Tinggi</span></td></tr><tr class="hl"><td><b>Desil 4</b></td><td>Rentan miskin</td><td>PKH, BPNT</td><td><span class="pill y">Sedang</span></td></tr><tr class="hl"><td><b>Desil 5</b></td><td>Menengah bawah</td><td>PBI Jaminan Kesehatan</td><td><span class="pill y">Terbatas</span></td></tr><tr class="hl"><td><b>Desil 6–10</b></td><td>Menengah – mampu</td><td>Umumnya tidak menerima</td><td><span class="pill r">Bukan prioritas</span></td></tr></table>
+<p style="margin-top:10px;font-size:12px;color:#64748B">ℹ️ BSU mengacu pada data kepesertaan <b>BPJS Ketenagakerjaan</b>, sedangkan desil menjadi acuan utama bansos Kemensos (PKH, BPNT). Keduanya saling melengkapi dalam verifikasi.</p></div>
+<div class="sect">Cara Cek Desil Anda</div>
+<div class="card">
+<div class="step"><div class="n">1</div><p><b>Situs Kemensos</b> — buka <b>cekbansos.kemensos.go.id</b>, isi wilayah, nama sesuai KTP, NIK, dan captcha, lalu klik <b>Cari Data</b>.</p></div>
+<div class="step"><div class="n">2</div><p><b>Aplikasi "Cek Bansos"</b> — unduh di Play Store, daftar dengan foto KTP & swafoto, buka menu <b>Profil</b> untuk melihat desil.</p></div>
+<div class="step"><div class="n">3</div><p><b>Kelurahan / Dinas Sosial</b> — datang dengan KTP & KK untuk pengecekan atau pembaruan data bila dinilai tidak sesuai.</p></div>
+</div>
+<div class="disclaimer"><span class="ic">⚠️</span>
+<p><b>Hanya panduan.</b> Data desil resmi dikelola <b>Kemensos/BPS</b> dan bersifat dinamis. Aplikasi ini tidak menyimpan atau memproses NIK Anda.</p></div>
+</div></section>
+<section class="screen" id="scr-tentang" style="display:none"><div class="appbar"><div class="row"><div class="back" data-back>‹</div><div><h1>Tentang</h1><p>Info aplikasi & pengembang</p></div></div></div>
+<div class="card" style="text-align:center;padding:28px 16px">
+<div class="logo" style="width:72px;height:72px;font-size:24px;margin:0 auto 14px;border-radius:20px">BSU</div>
+<h3 style="font-size:18px">Cek BSU</h3>
+<p style="font-size:12px;color:#64748B">Versi 1.0 • Panduan Bantuan Subsidi Upah</p>
+</div>
+<div class="card"><h3>Kenapa aplikasi ini dibuat</h3>
+<p>Aplikasi ini dibuat untuk membantu para pekerja memahami program Bantuan Subsidi Upah (BSU) — syarat penerima, jadwal penyaluran, cara cek status, hingga klasifikasi desil — dalam satu tempat yang ringkas dan mudah dibaca.</p>
+<p style="margin-top:8px"><b>Penting:</b> Ini <b>bukan</b> aplikasi resmi pemerintah. Seluruh data resmi hanya berasal dari kanal Kemnaker, BPJS Ketenagakerjaan, dan Kemensos.</p></div>
+<div class="card" style="text-align:center">
+<h3>Pengembang</h3>
+<p style="font-size:14px">© aldire__</p>
+<button class="open" data-ext="https://instagram.com/aldire__" style="margin-top:10px;font-size:14px;padding:10px 22px">📷 Instagram @aldire__</button>
+</div>
+<div class="disclaimer"><span class="ic">⚠️</span>
+<p><b>Bukan aplikasi resmi pemerintah.</b> Aplikasi panduan informasi — data resmi hanya di <b>bsu.kemnaker.go.id</b>.</p></div>
+</section>
+<div class="bottomnav" style="width:100%;max-width:480px"><div class="nav-it active" data-nav="beranda"><span class="ni">🏠</span>Beranda</div><div class="nav-it" data-nav="syarat"><span class="ni">✅</span>Syarat</div><div class="nav-it" data-nav="desil"><span class="ni">📊</span>Desil</div><div class="nav-it" data-nav="faq"><span class="ni">❓</span>FAQ</div></div>
+<script>
+function go(id){
+  document.querySelectorAll('.screen').forEach(function(s){s.style.display='none';});
+  var el=document.getElementById('scr-'+id);
+  if(el){el.style.display='block';}
+  document.querySelectorAll('.nav-it').forEach(function(n){
+    n.classList.toggle('active', n.getAttribute('data-nav')===id);
+  });
+  window.scrollTo(0,0);
+}
+document.addEventListener('click',function(e){
+  var t=e.target;
+  var goEl=t.closest('[data-go]');
+  if(goEl){go(goEl.getAttribute('data-go'));return;}
+  var navEl=t.closest('[data-nav]');
+  if(navEl){go(navEl.getAttribute('data-nav'));return;}
+  if(t.closest('[data-back]')){go('beranda');return;}
+  var ext=t.closest('[data-ext]');
+  if(ext){
+    var url=ext.getAttribute('data-ext');
+    if(window.AndroidBridge&&window.AndroidBridge.openUrl){window.AndroidBridge.openUrl(url);}
+    else{window.open(url,'_blank');}
+    return;
+  }
+  var q=t.closest('.faq .q');
+  if(q){
+    var a=q.parentElement.querySelector('.a');
+    var chev=q.querySelector('.chev');
+    if(a){
+      var open=a.style.display!=='none';
+      a.style.display=open?'none':'block';
+      if(chev)chev.textContent=open?'▸':'▾';
+    }
+  }
+});
+go('beranda');
+</script>
+</body></html>
