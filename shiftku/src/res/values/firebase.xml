@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Generated from google-services.json (project: shiftku-bc2e0) -->
+    <string name="google_app_id" translatable="false">1:827359925652:android:657aa7b819a4f9f4c0ab81</string>
+    <string name="gcm_defaultSenderId" translatable="false">827359925652</string>
+    <string name="google_api_key" translatable="false">AIzaSyAIZ2wUd8-CDkbiCl9fiTvzo0A8XEQRhHM</string>
+    <string name="project_id" translatable="false">shiftku-bc2e0</string>
+    <string name="google_storage_bucket" translatable="false">shiftku-bc2e0.firebasestorage.app</string>
+</resources>

@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Tema terang (personal) -->
+    <color name="primary">#5B5BF0</color>
+    <color name="primary_dark">#4845D6</color>
+    <color name="bg">#F7F8FC</color>
+    <color name="card">#FFFFFF</color>
+    <color name="text">#1A1D29</color>
+    <color name="text_dim">#8A8FA3</color>
+    <color name="divider">#E8EAF2</color>
+    <!-- Tema gelap (grup) -->
+    <color name="dark_bg">#0D1424</color>
+    <color name="dark_card">#182238</color>
+    <color name="dark_accent">#3B82F6</color>
+    <color name="dark_text">#FFFFFF</color>
+    <color name="dark_dim">#8A94B0</color>
+    <!-- Warna shift -->
+    <color name="shift_pagi">#F87171</color>
+    <color name="shift_siang">#FBBF24</color>
+    <color name="shift_malam">#6366F1</color>
+    <color name="shift_libur">#34D399</color>
+    <color name="shift_off">#9CA3AF</color>
+    <color name="green">#22C55E</color>
+    <color name="red">#EF4444</color>
+    <color name="amber">#F59E0B</color>
+</resources>

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center"
+    android:padding="12dp"
+    android:background="#E65B5BF0">
+    <TextView
+        android:id="@+id/w_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="ShiftKu"
+        android:textColor="#FFFFFF"
+        android:textSize="12sp" />
+    <TextView
+        android:id="@+id/w_shift"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="-"
+        android:textColor="#FFFFFF"
+        android:textSize="22sp"
+        android:textStyle="bold" />
+    <TextView
+        android:id="@+id/w_time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text=""
+        android:textColor="#E0E0FF"
+        android:textSize="12sp" />
+</LinearLayout>
