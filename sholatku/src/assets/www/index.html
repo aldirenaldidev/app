@@ -1,0 +1,535 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<title>SholatKu</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+:root{--pink:#FF6F91;--blue:#6A82FB;--blue-soft:#A2C2E0;--cream:#F9FBCB;--yellow:#F9C74F;
+--bg:#F7F8FC;--card:#FFFFFF;--ink:#1A1D2E;--gray:#6B7280;--line:#ECEFF5;
+--grad:linear-gradient(135deg,#6A82FB 0%,#FF6F91 100%)}
+html,body{height:100%}
+body{font-family:'Noto Sans','DejaVu Sans',system-ui,sans-serif;background:var(--bg);color:var(--ink);overflow:hidden}
+#app{height:100%;display:flex;flex-direction:column}
+.screen{flex:1;overflow-y:auto;display:none;padding-bottom:110px}
+.screen.active{display:block}
+.subscreen .bottomnav{display:none}
+.hidden{display:none!important}
+/* ---------- header ---------- */
+.tophead{display:flex;align-items:center;justify-content:space-between;padding:20px 20px 4px}
+.tophead:has([data-back]){justify-content:flex-start;gap:12px}
+.tophead h1{font-size:24px;font-weight:800}
+.tophead .locbtn{width:44px;height:44px;border-radius:50%;background:#fff;border:none;box-shadow:0 2px 10px rgba(0,0,0,.08);display:flex;align-items:center;justify-content:center;cursor:pointer;color:var(--pink)}
+.tophead .locbtn svg{width:24px;height:24px}
+/* ---------- hero ---------- */
+.hero{margin:12px 16px 0;background:var(--grad);border-radius:24px;padding:22px 20px;color:#fff;box-shadow:0 8px 24px rgba(106,130,251,.35);position:relative;overflow:hidden}
+.hero .lbl{font-size:11px;letter-spacing:2.5px;font-weight:700;opacity:.85}
+.hero .city{font-size:22px;font-weight:800;margin-top:2px}
+.hero .hijri{font-size:13px;opacity:.9;margin-top:2px}
+.hero .nextlbl{font-size:11px;letter-spacing:2.5px;font-weight:700;opacity:.85;margin-top:14px}
+.hero .nextname{font-size:40px;font-weight:800;line-height:1.05}
+.hero .count{font-size:15px;opacity:.92;margin-top:2px}
+.hero .bigtime{position:absolute;right:18px;bottom:16px;font-size:52px;font-weight:800;font-variant-numeric:tabular-nums;letter-spacing:-1px}
+/* ---------- strip waktu ---------- */
+.strip{display:flex;background:#fff;border-radius:20px;margin:14px 16px 0;padding:14px 6px;box-shadow:0 2px 12px rgba(0,0,0,.05)}
+.pstrip{flex:1;text-align:center;border-radius:14px;padding:8px 2px}
+.pstrip .pn{font-size:11.5px;color:var(--gray);font-weight:600}
+.pstrip .pt{font-size:15px;font-weight:800;margin-top:3px;font-variant-numeric:tabular-nums}
+.pstrip.next{background:var(--grad);color:#fff}
+.pstrip.next .pn{color:rgba(255,255,255,.9)}
+/* ---------- kartu ---------- */
+.card{background:var(--card);border-radius:20px;margin:14px 16px 0;padding:18px;box-shadow:0 2px 12px rgba(0,0,0,.05)}
+.card h3{font-size:17px;font-weight:800}
+.card .sub{font-size:13px;color:var(--gray);margin-top:3px}
+.row2{display:flex;gap:12px;margin:14px 16px 0}
+.minicard{flex:1;background:#fff;border-radius:20px;padding:16px;box-shadow:0 2px 12px rgba(0,0,0,.05);cursor:pointer}
+.minicard svg{width:28px;height:28px;color:var(--blue)}
+.minicard b{display:block;font-size:15px;margin-top:8px}
+.minicard span{font-size:12px;color:var(--gray)}
+.secttl{font-size:13px;font-weight:800;letter-spacing:1.5px;color:#9AA0B4;margin:22px 20px 2px}
+/* ---------- grid Fitur Ibadah (layar utama) ---------- */
+.feat-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin:12px 16px 0}
+.feat{background:#fff;border-radius:18px;padding:14px 6px 12px;text-align:center;box-shadow:0 2px 12px rgba(0,0,0,.05);cursor:pointer}
+.feat .fico{width:44px;height:44px;margin:0 auto;border-radius:14px;background:linear-gradient(135deg,rgba(106,130,251,.16),rgba(255,111,145,.16));display:flex;align-items:center;justify-content:center;color:var(--blue)}
+.feat .fico svg{width:24px;height:24px}
+.feat b{display:block;font-size:11.5px;margin-top:8px;line-height:1.3}
+/* ---------- menu list (Lainnya) ---------- */
+.mrow{display:flex;align-items:center;padding:15px 4px;border-bottom:1px solid var(--line);cursor:pointer}
+.mrow:last-child{border-bottom:none}
+.mico{width:46px;height:46px;border-radius:14px;background:linear-gradient(135deg,rgba(106,130,251,.14),rgba(255,111,145,.14));display:flex;align-items:center;justify-content:center;color:var(--blue);flex:none}
+.mico svg{width:25px;height:25px}
+.mtxt{flex:1;margin-left:13px}
+.mtxt b{font-size:16px;display:block}
+.mtxt span{font-size:12.5px;color:var(--gray)}
+.mchev{color:#C3C9D6;font-size:20px;font-weight:700}
+/* ---------- tombol ---------- */
+.btn{display:block;width:100%;background:var(--grad);color:#fff;font-size:17px;font-weight:800;border:none;border-radius:60px;padding:16px;cursor:pointer;box-shadow:0 6px 18px rgba(255,111,145,.35)}
+.btn:active{transform:scale(.98)}
+.btn.ghost{background:#fff;color:var(--pink);border:2px solid var(--pink);box-shadow:none}
+.skip{margin-top:14px;font-size:14px;color:var(--gray);font-weight:600;cursor:pointer;text-align:center}
+/* ---------- search kota modern ---------- */
+.searchpill{margin:14px 16px 0;background:#fff;border-radius:60px;display:flex;align-items:center;padding:15px 20px;box-shadow:0 2px 12px rgba(0,0,0,.06);border:2px solid transparent}
+.searchpill:focus-within{border-color:var(--pink);box-shadow:0 0 0 4px rgba(255,111,145,.15)}
+.searchpill svg{width:22px;height:22px;color:var(--pink);flex:none}
+.searchpill input{flex:1;border:none;outline:none;font-size:16px;margin-left:10px;background:transparent;color:var(--ink)}
+.searchpill .clr{border:none;background:#EEF0F6;color:var(--gray);width:26px;height:26px;border-radius:50%;font-size:14px;cursor:pointer;display:none}
+.gpsbtn{margin:12px 16px 0;background:var(--grad);color:#fff;border:none;border-radius:60px;padding:15px;font-size:16px;font-weight:800;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:10px;box-shadow:0 6px 18px rgba(106,130,251,.35)}
+.gpsbtn svg{width:22px;height:22px}
+.chips{display:flex;gap:8px;margin:14px 16px 0;overflow-x:auto;padding-bottom:2px}
+.chip{flex:none;background:#fff;border:1.5px solid var(--line);color:var(--blue);border-radius:40px;padding:9px 18px;font-size:14px;font-weight:700;cursor:pointer}
+.chip.on{border-color:var(--pink);color:var(--pink);background:rgba(255,111,145,.08)}
+.cityresults{margin:12px 16px 0;background:#fff;border-radius:18px;box-shadow:0 2px 12px rgba(0,0,0,.06);overflow:hidden}
+.cityrow{display:flex;align-items:center;padding:14px 18px;border-bottom:1px solid var(--line);cursor:pointer}
+.cityrow:last-child{border-bottom:none}
+.cityrow:active{background:rgba(106,130,251,.07)}
+.cityrow svg{width:22px;height:22px;color:var(--pink);flex:none}
+.cityrow .ct{flex:1;margin-left:12px}
+.cityrow .ct b{font-size:16px;display:block}
+.cityrow .ct span{font-size:12.5px;color:var(--gray)}
+.emptybox{margin:20px 16px;background:#fff;border-radius:20px;padding:36px 20px;text-align:center;box-shadow:0 2px 12px rgba(0,0,0,.05)}
+.emptybox .eico{width:90px;height:90px;border-radius:50%;background:linear-gradient(135deg,rgba(106,130,251,.12),rgba(255,111,145,.12));display:flex;align-items:center;justify-content:center;margin:0 auto 14px;color:var(--blue)}
+.emptybox .eico svg{width:44px;height:44px}
+.emptybox b{font-size:18px}
+.emptybox p{font-size:13.5px;color:var(--gray);margin-top:6px}
+/* ---------- pengaturan ---------- */
+.setrow{display:flex;align-items:center;padding:15px 4px;border-bottom:1px solid var(--line)}
+.setrow:last-child{border-bottom:none}
+.setrow .st{flex:1}
+.setrow .st b{font-size:15.5px;display:block}
+.setrow .st span{font-size:12.5px;color:var(--gray)}
+.switch{position:relative;width:52px;height:30px;flex:none;cursor:pointer}
+.switch input{opacity:0;width:0;height:0}
+.sl{position:absolute;inset:0;background:#D9DEE8;border-radius:30px;transition:.2s}
+.sl:before{content:"";position:absolute;width:24px;height:24px;left:3px;top:3px;background:#fff;border-radius:50%;transition:.2s;box-shadow:0 2px 5px rgba(0,0,0,.2)}
+.switch input:checked + .sl{background:var(--grad)}
+.switch input:checked + .sl:before{transform:translateX(22px)}
+.numrow{display:flex;align-items:center;gap:10px}
+.numrow input{width:70px;padding:10px;border:2px solid var(--line);border-radius:12px;font-size:16px;text-align:center;outline:none}
+.numrow input:focus{border-color:var(--pink)}
+/* ---------- radio adzan ---------- */
+.arow{display:flex;align-items:flex-start;padding:15px 4px;border-bottom:1px solid var(--line);cursor:pointer}
+.arow:last-child{border-bottom:none}
+.radio{width:24px;height:24px;border-radius:50%;border:2.5px solid #C9D0DE;flex:none;margin-top:2px;position:relative}
+.arow.on .radio{border-color:var(--pink)}
+.arow.on .radio:after{content:"";position:absolute;inset:3px;border-radius:50%;background:var(--grad)}
+.arow .at{flex:1;margin-left:12px}
+.arow .at b{font-size:15.5px;display:block}
+.arow .at span{font-size:12px;color:var(--gray);display:block;margin-top:2px}
+.arow .play{width:44px;height:44px;border-radius:50%;background:linear-gradient(135deg,rgba(106,130,251,.14),rgba(255,111,145,.14));border:none;color:var(--pink);font-size:16px;cursor:pointer;flex:none}
+/* ---------- imsakiyah ---------- */
+.imstbl{width:100%;border-collapse:collapse;font-size:12.5px}
+.imstbl th{color:var(--blue);font-size:12px;padding:10px 4px}
+.imstbl td{padding:11px 4px;text-align:center;border-top:1px solid var(--line);font-variant-numeric:tabular-nums}
+.imstbl tr.today td{background:var(--grad);color:#fff;font-weight:800}
+.imstbl tr.today td:first-child{border-radius:12px 0 0 12px}
+.imstbl tr.today td:last-child{border-radius:0 12px 12px 0}
+/* ---------- tasbih ---------- */
+.dzikirpick{margin:14px 16px 0;display:flex;gap:8px;overflow-x:auto;padding-bottom:4px}
+.tchip{flex:none;border:1.5px solid var(--line);color:var(--gray);border-radius:30px;padding:9px 18px;font-size:13px;font-weight:700;background:#fff;cursor:pointer}
+.tchip.on{border-color:var(--pink);color:var(--pink);background:rgba(255,111,145,.08)}
+.arab{font-size:30px;line-height:2;color:var(--ink);direction:rtl;text-align:center}
+.latin{font-size:14px;color:var(--gray);margin-top:4px;text-align:center}
+.counterwrap{position:relative;width:230px;height:230px;margin:18px auto}
+.counterwrap svg.ring{position:absolute;inset:0;transform:rotate(-90deg)}
+.cnum{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center}
+.cnum b{font-size:64px;font-weight:800;font-variant-numeric:tabular-nums}
+.cnum span{font-size:13px;color:var(--gray)}
+.tapbtn{display:block;width:78%;margin:6px auto;background:var(--grad);color:#fff;font-size:22px;font-weight:800;border:none;border-radius:60px;padding:18px;cursor:pointer;letter-spacing:2px;box-shadow:0 8px 22px rgba(255,111,145,.4)}
+.tapbtn:active{transform:scale(.97)}
+.tgtrow{display:flex;gap:10px;justify-content:center;margin-top:14px}
+.tgt{border:2px solid var(--line);color:var(--gray);background:#fff;border-radius:40px;padding:9px 26px;font-size:16px;font-weight:700;cursor:pointer}
+.tgt.on{background:var(--grad);border-color:transparent;color:#fff}
+/* ---------- doa / konten ---------- */
+.doacard h3{font-size:16px;margin-bottom:8px}
+.doacard .ar{font-size:22px;line-height:2;direction:rtl;text-align:right}
+.doacard .lt{font-size:13px;color:var(--gray);font-style:italic;margin-top:6px}
+.doacard .tr{font-size:14px;margin-top:6px;line-height:1.6}
+.artsec{margin-top:14px}
+.artsec b{display:block;font-size:14px;color:var(--pink);margin-bottom:4px}
+.artsec p{font-size:14px;line-height:1.75;color:#374151}
+.nabicard{display:flex;align-items:center;gap:12px}
+.nabinum{width:44px;height:44px;flex:none;border-radius:50%;background:var(--grad);color:#fff;font-weight:800;display:flex;align-items:center;justify-content:center;font-size:15px}
+/* ---------- kiblat ---------- */
+.compasswrap{width:260px;height:260px;margin:20px auto;position:relative}
+.compasswrap svg{width:100%;height:100%}
+.kiblatinfo{text-align:center;margin:0 24px}
+.kiblatinfo b{font-size:20px;background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
+.kiblatinfo p{font-size:13px;color:var(--gray);margin-top:8px;line-height:1.6}
+/* ---------- tentang ---------- */
+.aboutlogo{width:96px;height:96px;border-radius:28px;background:var(--grad);display:flex;align-items:center;justify-content:center;margin:26px auto 12px;color:#fff;box-shadow:0 8px 22px rgba(106,130,251,.4)}
+.aboutlogo svg{width:52px;height:52px}
+.center{text-align:center}
+.appname{font-size:30px;font-weight:800}
+.appver{font-size:13px;color:var(--gray);margin-top:2px}
+.copyright{font-size:17px;font-weight:800;margin-top:10px;background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
+.igbtn{display:inline-block;margin-top:14px;background:#fff;border:2px solid var(--pink);color:var(--pink);font-weight:800;font-size:18px;border-radius:50px;padding:12px 44px;text-decoration:none}
+.whytext{font-size:14px;line-height:1.8;color:#374151}
+.credit{font-size:12px;color:#9AA0B4;line-height:1.7;margin-top:10px}
+/* ---------- bottom nav ---------- */
+.bottomnav{position:fixed;left:0;right:0;bottom:0;background:#fff;border-top:1px solid var(--line);display:flex;padding:10px 8px calc(10px + env(safe-area-inset-bottom));z-index:10}
+.navit{flex:1;text-align:center;color:#9AA0B4;font-size:11px;font-weight:700;cursor:pointer;border-radius:16px;padding:6px 0}
+.navit .npill{display:inline-flex;align-items:center;justify-content:center;width:56px;height:34px;border-radius:20px}
+.navit svg{width:24px;height:24px}
+.navit.on{color:var(--pink)}
+.navit.on .npill{background:var(--grad);color:#fff}
+/* ---------- onboarding ---------- */
+#onboarding{position:fixed;inset:0;z-index:60;background:var(--bg);display:none;flex-direction:column;padding:18px 22px calc(22px + env(safe-area-inset-bottom));overflow-y:auto}
+#onboarding.show{display:flex}
+body.onboarding .bottomnav{display:none}
+.onb-pill{background:#fff;border-radius:60px;display:flex;align-items:center;justify-content:space-between;padding:13px 20px;box-shadow:0 2px 12px rgba(0,0,0,.06)}
+.onb-pill .t{font-weight:800;font-size:17px}
+.onb-pill .s{font-size:13px;color:var(--gray);font-weight:600}
+.onb-bar{display:flex;gap:8px;margin:12px 4px 0}
+.onb-bar i{flex:1;height:5px;border-radius:3px;background:#E4E8F0}
+.onb-bar i.on{background:var(--grad)}
+.onb-step{display:none;flex:1;flex-direction:column;align-items:center;text-align:center;padding-top:36px}
+.onb-step.active{display:flex}
+.onb-ico{width:120px;height:120px;border-radius:50%;background:var(--grad);display:flex;align-items:center;justify-content:center;box-shadow:0 10px 30px rgba(255,111,145,.4);margin-bottom:24px;flex:none;color:#fff}
+.onb-ico svg{width:54px;height:54px}
+.onb-title{font-size:25px;font-weight:800;margin-bottom:10px}
+.onb-desc{font-size:14.5px;line-height:1.65;color:var(--gray);max-width:330px}
+.onb-spacer{flex:1;min-height:20px}
+.onb-card{width:100%;background:#fff;border-radius:18px;box-shadow:0 2px 12px rgba(0,0,0,.06);margin-top:16px;text-align:left;overflow:hidden}
+.checkrow{display:flex;align-items:flex-start;padding:14px 16px;border-bottom:1px solid var(--line);cursor:pointer}
+.checkrow:last-child{border-bottom:none}
+.cbox{width:26px;height:26px;border-radius:8px;border:2.5px solid #C9D0DE;flex:none;margin-top:1px;position:relative;background:#fff}
+.checkrow.on .cbox{border-color:transparent;background:var(--grad)}
+.checkrow.on .cbox:after{content:"✓";position:absolute;inset:0;color:#fff;font-weight:800;font-size:15px;display:flex;align-items:center;justify-content:center}
+.checkrow .ct{flex:1;margin-left:12px}
+.checkrow .ct b{font-size:15px;display:block}
+.checkrow .ct span{font-size:12.5px;color:var(--gray);display:block;margin-top:2px}
+.toast{position:fixed;left:50%;bottom:110px;transform:translateX(-50%);background:rgba(26,29,46,.92);color:#fff;padding:11px 22px;border-radius:30px;font-size:13px;z-index:99;display:none;max-width:88%;text-align:center}
+.offlinebar{background:var(--yellow);color:#5b4a00;text-align:center;font-size:12px;padding:7px;display:none;font-weight:700}
+</style>
+</head>
+<body>
+<div id="app">
+<div class="offlinebar" id="offlinebar">Mode offline — memakai jadwal tersimpan</div>
+
+<!-- ============ ONBOARDING (4 langkah, sekali saja) ============ -->
+<div id="onboarding">
+  <div class="onb-pill"><span class="t">SholatKu</span><span class="s" id="ob-step-label">Langkah 1 dari 4</span></div>
+  <div class="onb-bar"><i class="on" id="ob-b1"></i><i id="ob-b2"></i><i id="ob-b3"></i><i id="ob-b4"></i></div>
+
+  <div class="onb-step active" id="ob-s1">
+    <div class="onb-ico" id="ob-ico1"></div>
+    <div class="onb-title">Aktifkan notifikasi</div>
+    <div class="onb-desc">Kami akan memutar suara adzan dan mengirim pemberitahuan saat masuk waktu sholat.</div>
+    <div class="onb-spacer"></div>
+    <button class="btn" id="ob1-next">Lanjutkan</button>
+    <div class="skip" id="ob1-skip">Lewati</div>
+  </div>
+
+  <div class="onb-step" id="ob-s2">
+    <div class="onb-ico" id="ob-ico2"></div>
+    <div class="onb-title">Pilih suara adzan</div>
+    <div class="onb-desc">Dengarkan dan pilih suara adzan favoritmu. Subuh bisa memakai versi khusus secara otomatis.</div>
+    <div class="onb-card" id="ob-adzan-list"></div>
+    <div class="onb-card" style="margin-top:10px">
+      <div class="checkrow on" id="ob-subuh-auto"><div class="cbox"></div><div class="ct"><b>Subuh otomatis versi khusus</b><span>Adzan Subuh memakai versi Malmö (ada “ash-shalatu khairun minan-naum”)</span></div></div>
+    </div>
+    <div class="onb-spacer"></div>
+    <button class="btn" id="ob2-next">Lanjutkan</button>
+    <div class="skip" id="ob2-skip">Lewati</div>
+  </div>
+
+  <div class="onb-step" id="ob-s3">
+    <div class="onb-ico" id="ob-ico3"></div>
+    <div class="onb-title">Tentukan lokasimu</div>
+    <div class="onb-desc">Aplikasi memakai lokasi sekali saja untuk jadwal paling akurat. Bisa diganti manual kapan saja.</div>
+    <div class="onb-status" id="ob3-status" style="font-size:13.5px;color:var(--pink);min-height:22px;margin-top:10px"></div>
+    <div class="onb-spacer"></div>
+    <button class="btn" id="ob3-next">Gunakan lokasi saya</button>
+    <div class="skip" id="ob3-manual">Pilih kota manual</div>
+  </div>
+
+  <div class="onb-step" id="ob-s4">
+    <div class="onb-ico" id="ob-ico4"></div>
+    <div class="onb-title">Pilih pengingat</div>
+    <div class="onb-desc">Aktifkan yang kamu butuhkan. Semua bisa diubah lagi di Pengaturan.</div>
+    <div class="onb-card">
+      <div class="checkrow on" data-rem="fardhu"><div class="cbox"></div><div class="ct"><b>Adzan sholat fardhu</b><span>Suara adzan berkumandang setiap masuk waktu sholat wajib</span></div></div>
+      <div class="checkrow on" data-rem="dhuha"><div class="cbox"></div><div class="ct"><b>Pengingat Dhuha</b><span>Notifikasi lembut setiap pagi (default 08:00)</span></div></div>
+      <div class="checkrow on" data-rem="tahajud"><div class="cbox"></div><div class="ct"><b>Pengingat Tahajud</b><span>Notifikasi lembut setiap malam (default 03:00)</span></div></div>
+      <div class="checkrow on" data-rem="puasa"><div class="cbox"></div><div class="ct"><b>Pengingat puasa sunnah</b><span>Senin–Kamis &amp; Ayyamul Bidh, diingatkan malam sebelumnya</span></div></div>
+      <div class="checkrow on" data-rem="pre15"><div class="cbox"></div><div class="ct"><b>Pengingat 15 menit sebelum adzan</b><span>Persiapan sebelum waktu sholat tiba</span></div></div>
+    </div>
+    <div class="onb-spacer"></div>
+    <button class="btn" id="ob4-done">Mulai memakai SholatKu</button>
+  </div>
+</div>
+
+<!-- ============ TAB: JADWAL ============ -->
+<div class="screen active" id="screen-jadwal">
+  <div class="tophead"><h1>Jadwal Sholat</h1><button class="locbtn" id="head-loc" aria-label="Pilih kota"></button></div>
+  <div class="hero">
+    <div class="lbl">JADWAL SHOLAT</div>
+    <div class="city" id="hero-city">…</div>
+    <div class="hijri" id="hero-hijri">…</div>
+    <div class="hijri" id="hero-masehi" style="opacity:.75">…</div>
+    <div class="nextlbl">BERIKUTNYA</div>
+    <div class="nextname" id="hero-next">…</div>
+    <div class="count" id="hero-count">…</div>
+    <div class="bigtime" id="hero-time">…</div>
+  </div>
+  <div class="strip" id="prayer-strip"></div>
+  <div class="secttl">FITUR IBADAH</div>
+  <div class="feat-grid" id="feat-grid"></div>
+  <div class="row2">
+    <div class="minicard" id="btn-share"><span class="sic" data-ic="bagikan"></span><b>Bagikan</b><span>Ajak keluarga</span></div>
+    <div class="minicard" id="btn-feedback"><span class="sic" data-ic="masukan"></span><b>Kirim masukan</b><span>Kami baca semua</span></div>
+  </div>
+  <div class="secttl">5 HARI BERIKUTNYA</div>
+  <div id="forecast-list"></div>
+  <div style="height:8px"></div>
+</div>
+
+<!-- ============ TAB: IMSAKIYAH ============ -->
+<div class="screen" id="screen-imsakiyah">
+  <div class="tophead"><h1>Imsakiyah</h1><button class="locbtn" id="head-loc2" aria-label="Pilih kota"></button></div>
+  <div class="card"><h3 id="ims-title">Ramadhan 1448 H</h3><div class="sub" id="ims-sub">…</div></div>
+  <div class="card" style="padding:8px 10px;overflow-x:auto">
+    <table class="imstbl" id="ims-table">
+      <thead><tr><th>Hari</th><th>Imsak</th><th>Subuh</th><th>Terbit</th><th>Dzuhur</th><th>Ashar</th><th>Maghrib</th><th>Isya</th></tr></thead>
+      <tbody id="ims-body"><tr><td colspan="8" style="color:var(--gray)">Memuat…</td></tr></tbody>
+    </table>
+  </div>
+  <p style="text-align:center;font-size:12px;color:#9AA0B4;margin:10px 20px">Jadwal perkiraan berdasarkan metode Kemenag RI.<br>Awal Ramadhan mengikuti keputusan pemerintah.</p>
+</div>
+
+<!-- ============ TAB: KIBLAT ============ -->
+<div class="screen" id="screen-kiblat">
+  <div class="tophead"><h1>Arah Kiblat</h1><span></span></div>
+  <div class="compasswrap">
+    <svg viewBox="0 0 260 260">
+      <circle cx="130" cy="130" r="120" fill="#fff" stroke="url(#gcomp)" stroke-width="4"/>
+      <defs><linearGradient id="gcomp" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#6A82FB"/><stop offset="1" stop-color="#FF6F91"/></linearGradient></defs>
+      <text x="130" y="36" text-anchor="middle" fill="#FF6F91" font-size="20" font-weight="bold">U</text>
+      <text x="130" y="242" text-anchor="middle" fill="#9AA0B4" font-size="16">S</text>
+      <text x="238" y="137" text-anchor="middle" fill="#9AA0B4" font-size="16">T</text>
+      <text x="22" y="137" text-anchor="middle" fill="#9AA0B4" font-size="16">B</text>
+      <!-- Indikator kiblat: panah emas + ikon Ka'bah, berbeda jelas dari jarum kompas biasa -->
+      <g id="qiblaArrow" style="transform-origin:130px 130px">
+        <!-- panah emas penunjuk kiblat -->
+        <polygon points="130,52 142,130 130,120 118,130" fill="#D4AF37"/>
+        <polygon points="130,208 138,130 130,138 122,130" fill="#E8D5A3" opacity="0.7"/>
+        <!-- ikon Ka'bah di ujung arah kiblat -->
+        <g id="kaabaIcon">
+          <rect x="112" y="30" width="36" height="30" rx="3" fill="#1a1a1a" stroke="#D4AF37" stroke-width="2.5"/>
+          <rect x="112" y="42" width="36" height="7" fill="#D4AF37"/>
+          <rect x="124" y="30" width="12" height="30" fill="#000" opacity="0.25"/>
+        </g>
+        <circle cx="130" cy="130" r="10" fill="#D4AF37"/>
+        <circle cx="130" cy="130" r="4" fill="#fff"/>
+      </g>
+      <!-- jarum utara kompas (kecil, abu-abu, tidak membingungkan) -->
+      <g id="needle" style="transform-origin:130px 130px;opacity:0.35">
+        <polygon points="130,100 134,130 130,126 126,130" fill="#9AA0B4"/>
+      </g>
+    </svg>
+  </div>
+  <div class="kiblatinfo"><b id="kiblat-deg">…° dari utara</b>
+    <p id="kiblat-note">Arahkan HP hingga <b style="color:#D4AF37">panah emas 🕋</b> menunjuk ke atas.<br>Letakkan HP di permukaan datar untuk hasil terbaik.</p></div>
+  <div style="height:20px"></div>
+</div>
+
+<!-- ============ TAB: LAINNYA ============ -->
+<div class="screen" id="screen-lainnya">
+  <div class="tophead"><h1>Lainnya</h1><span></span></div>
+  <div class="card" id="metode-card" style="background:var(--grad);color:#fff;cursor:pointer">
+    <div style="display:flex;gap:14px;align-items:center">
+      <div class="mico" style="background:rgba(255,255,255,.25);color:#fff" id="metode-ico"></div>
+      <div><h3>Metode Kementerian Agama RI</h3><div class="sub" style="color:rgba(255,255,255,.9)">Dicocokkan dengan jadwal resmi 513 kota. Ketuk untuk melihat sumber.</div></div>
+    </div>
+  </div>
+  <div class="secttl">APLIKASI</div>
+  <div class="card" style="padding:6px 18px" id="menu-aplikasi"></div>
+  <div class="secttl">TENTANG</div>
+  <div class="card" style="padding:6px 18px" id="menu-tentang"></div>
+  <div style="height:8px"></div>
+</div>
+
+<!-- ============ SUB: PILIH KOTA ============ -->
+<div class="screen subscreen" id="screen-kota">
+  <div class="tophead"><button class="locbtn" data-back data-ic="kembali" aria-label="Kembali"></button><h1 style="font-size:20px">Pilih Kota</h1></div>
+  <div class="searchpill"><span class="sic" data-ic="search"></span><input id="city-search" placeholder="Cari kota..."><button class="clr" id="city-clear">✕</button></div>
+  <button class="gpsbtn" id="btn-gps"><span class="sic" data-ic="pin-lokasi"></span>Gunakan lokasi saya</button>
+  <div class="secttl" style="margin-top:16px">KOTA TERKINI</div>
+  <div class="chips" id="recent-chips"></div>
+  <div class="secttl" id="city-result-label">SEMUA KOTA • 513</div>
+  <div class="cityresults" id="city-results"></div>
+  <div class="emptybox hidden" id="city-empty">
+    <div class="eico"><span class="sic" data-ic="search" style="display:inline-flex"></span></div>
+    <b>Kota tidak ditemukan</b>
+    <p>Coba kata kunci lain, mis. "semarang"</p>
+  </div>
+  <div style="height:20px"></div>
+</div>
+
+<!-- ============ SUB: PENGATURAN ============ -->
+<div class="screen subscreen" id="screen-pengaturan">
+  <div class="tophead"><button class="locbtn" data-back data-ic="kembali" aria-label="Kembali"></button><h1 style="font-size:20px">Pengaturan</h1></div>
+  <div class="secttl">SUARA ADZAN</div>
+  <div class="card" style="padding:6px 18px" id="adzan-list"></div>
+  <div class="card"><div class="setrow"><div class="st"><b>Adzan Subuh otomatis versi khusus</b><span>Memakai versi Malmö (ada “ash-shalatu khairun minan-naum”)</span></div><label class="switch"><input type="checkbox" id="set-subuh-auto"><span class="sl"></span></label></div></div>
+  <div class="secttl">PENGINGAT</div>
+  <div class="card" style="padding:6px 18px">
+    <div class="setrow"><div class="st"><b>Adzan sholat fardhu</b><span>Suara adzan setiap masuk waktu sholat wajib</span></div><label class="switch"><input type="checkbox" id="set-fardhu"><span class="sl"></span></label></div>
+    <div class="setrow"><div class="st"><b>Pengingat 15 menit sebelum adzan</b><span>Notifikasi persiapan</span></div><label class="switch"><input type="checkbox" id="set-pre15"><span class="sl"></span></label></div>
+    <div class="setrow"><div class="st"><b>Pengingat Dhuha</b><span>Notifikasi lembut setiap pagi</span></div><label class="switch"><input type="checkbox" id="set-dhuha"><span class="sl"></span></label></div>
+    <div class="setrow"><div class="st"><b>Jam Dhuha</b><span>Waktu pengingat (default 08:00)</span></div><div class="numrow"><input type="time" id="set-dhuha-time" value="08:00"></div></div>
+    <div class="setrow"><div class="st"><b>Pengingat Tahajud</b><span>Notifikasi lembut setiap malam</span></div><label class="switch"><input type="checkbox" id="set-tahajud"><span class="sl"></span></label></div>
+    <div class="setrow"><div class="st"><b>Jam Tahajud</b><span>Waktu pengingat (default 03:00)</span></div><div class="numrow"><input type="time" id="set-tahajud-time" value="03:00"></div></div>
+    <div class="setrow"><div class="st"><b>Pengingat puasa sunnah</b><span>Senin–Kamis &amp; Ayyamul Bidh, H-1 pukul 20:00</span></div><label class="switch"><input type="checkbox" id="set-puasa"><span class="sl"></span></label></div>
+    <div class="setrow"><div class="st"><b>Pengingat Al-Kahf Jumat</b><span>Notifikasi tiap Jumat pukul 08:00</span></div><label class="switch"><input type="checkbox" id="set-kahf"><span class="sl"></span></label></div>
+  </div>
+  <div class="secttl">KOREKSI MENIT</div>
+  <div class="card" style="padding:6px 18px" id="koreksi-list"></div>
+  <p style="text-align:center;font-size:12px;color:#9AA0B4;margin:10px 20px">Sesuaikan bila jadwal di kotamu berbeda beberapa menit.<br>Nilai positif memajukan, negatif memundurkan.</p>
+  <div style="height:20px"></div>
+</div>
+
+<!-- ============ SUB: TASBIH ============ -->
+<div class="screen subscreen" id="screen-tasbih">
+  <div class="tophead"><button class="locbtn" data-back data-ic="kembali" aria-label="Kembali"></button><h1 style="font-size:20px">Tasbih Digital</h1></div>
+  <p style="text-align:center;font-size:13px;color:var(--gray)">Ketuk tombol untuk berdzikir</p>
+  <div class="dzikirpick" id="dzikir-pick"></div>
+  <div class="card" style="text-align:center">
+    <div style="font-size:11px;letter-spacing:2.5px;color:#9AA0B4;font-weight:700">DZIKIR SAAT INI</div>
+    <div class="arab" id="dz-ar">سُبْحَانَ اللهِ</div>
+    <div class="latin" id="dz-lt">Subhanallah — Maha Suci Allah</div>
+  </div>
+  <div class="counterwrap">
+    <svg class="ring" viewBox="0 0 230 230"><defs><linearGradient id="gring" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#6A82FB"/><stop offset="1" stop-color="#FF6F91"/></linearGradient></defs><circle cx="115" cy="115" r="104" fill="none" stroke="#ECEFF5" stroke-width="12"/><circle id="pring" cx="115" cy="115" r="104" fill="none" stroke="url(#gring)" stroke-width="12" stroke-linecap="round" stroke-dasharray="653.4" stroke-dashoffset="653.4"/></svg>
+    <div class="cnum"><b id="ccount">0</b><span id="ctarget">dari target 33</span></div>
+  </div>
+  <button class="tapbtn" id="tapbtn">KETUK</button>
+  <div style="text-align:center;margin-top:12px;font-size:11px;letter-spacing:2.5px;color:#9AA0B4;font-weight:700">TARGET DZIKIR</div>
+  <div class="tgtrow" id="tgt-row">
+    <button class="tgt on" data-t="33">33</button>
+    <button class="tgt" data-t="100">100</button>
+    <button class="tgt" data-t="1000">1000</button>
+  </div>
+  <div style="height:20px"></div>
+</div>
+
+<!-- ============ SUB: DOA ============ -->
+<div class="screen subscreen" id="screen-doa">
+  <div class="tophead"><button class="locbtn" data-back data-ic="kembali" aria-label="Kembali"></button><h1 style="font-size:20px">Doa Harian</h1></div>
+  <div class="searchpill"><span class="sic" data-ic="search"></span><input id="doa-search" placeholder="Cari doa..."></div>
+  <div id="doa-list"></div>
+  <div style="height:20px"></div>
+</div>
+<div class="screen subscreen" id="screen-doa-detail">
+  <div class="tophead"><button class="locbtn" data-back data-ic="kembali" aria-label="Kembali"></button><h1 style="font-size:20px" id="dd-title">Doa</h1></div>
+  <div class="card doacard"><div class="ar" id="dd-ar"></div><div class="lt" id="dd-lt"></div><div class="tr" id="dd-tr"></div></div>
+</div>
+
+<!-- ============ SUB: DZIKIR ============ -->
+<div class="screen subscreen" id="screen-dzikir">
+  <div class="tophead"><button class="locbtn" data-back data-ic="kembali" aria-label="Kembali"></button><h1 style="font-size:20px" id="dzk-title">Dzikir</h1></div>
+  <div id="dzk-list"></div>
+  <div style="text-align:center;margin:16px"><button class="chip" id="dzk-switch"></button></div>
+</div>
+
+<!-- ============ SUB: ASMAUL HUSNA ============ -->
+<div class="screen subscreen" id="screen-asma">
+  <div class="tophead"><button class="locbtn" data-back data-ic="kembali" aria-label="Kembali"></button><h1 style="font-size:20px">Asmaul Husna</h1></div>
+  <p style="text-align:center;font-size:13px;color:var(--gray)">99 Nama Allah yang indah</p>
+  <div class="card" id="asma-list" style="padding:8px 14px"></div>
+  <div style="height:20px"></div>
+</div>
+
+<!-- ============ SUB: KALENDER ============ -->
+<div class="screen subscreen" id="screen-kalender">
+  <div class="tophead"><button class="locbtn" data-back data-ic="kembali" aria-label="Kembali"></button><h1 style="font-size:20px">Kalender Hijriah</h1></div>
+  <div class="card"><div style="font-size:11px;letter-spacing:2.5px;color:#9AA0B4;font-weight:700">HARI INI</div>
+    <div style="font-size:24px;font-weight:800" id="kal-hijri">…</div>
+    <div style="font-size:14px;color:var(--gray)" id="kal-masehi">…</div></div>
+  <div class="secttl">HARI BESAR ISLAM</div>
+  <div class="card" id="haribesar-list" style="padding:8px 16px"></div>
+  <div style="height:20px"></div>
+</div>
+
+<!-- ============ SUB: PANDUAN ============ -->
+<div class="screen subscreen" id="screen-panduan">
+  <div class="tophead"><button class="locbtn" data-back data-ic="kembali" aria-label="Kembali"></button><h1 style="font-size:20px" id="pdn-title">Panduan Wudhu</h1></div>
+  <div style="display:flex;gap:8px;padding:12px 16px 4px">
+    <button class="tchip on" id="tab-wudhu">Wudhu</button>
+    <button class="tchip" id="tab-sholat">Sholat</button>
+  </div>
+  <div id="pdn-list" style="padding:8px 16px 0"></div>
+  <div style="height:20px"></div>
+</div>
+
+<!-- ============ SUB: PUASA SUNNAH ============ -->
+<div class="screen subscreen" id="screen-puasa">
+  <div class="tophead"><button class="locbtn" data-back data-ic="kembali" aria-label="Kembali"></button><h1 style="font-size:20px">Puasa Sunnah</h1></div>
+  <p style="text-align:center;font-size:13px;color:var(--gray);margin:0 24px">Kenali dalil, keutamaan, dan kisah di balik setiap puasa sunnah</p>
+  <div id="puasa-list"></div>
+  <div style="height:20px"></div>
+</div>
+<div class="screen subscreen" id="screen-puasa-detail">
+  <div class="tophead"><button class="locbtn" data-back data-ic="kembali" aria-label="Kembali"></button><h1 style="font-size:20px" id="pd-title">Puasa</h1></div>
+  <div class="card"><div class="sub" id="pd-jadwal"></div><h3 id="pd-nama" style="margin-top:4px"></h3><p class="whytext" id="pd-ringkas" style="margin-top:8px"></p></div>
+  <div class="card"><div class="artsec"><b>DALIL</b><p id="pd-dalil"></p></div><div class="artsec"><b>KEUTAMAAN</b><p id="pd-keutamaan"></p></div><div class="artsec"><b>ASAL-USUL &amp; KISAH</b><p id="pd-asal"></p></div></div>
+  <div style="height:20px"></div>
+</div>
+
+<!-- ============ SUB: KISAH 25 NABI ============ -->
+<!-- ============ SUB: PANDUAN WIDGET ============ -->
+<div class="screen subscreen" id="screen-widget">
+  <div class="tophead"><button class="locbtn" data-back data-ic="kembali" aria-label="Kembali"></button><h1 style="font-size:20px">Panduan Widget</h1></div>
+  <div class="card"><h3>Widget Jadwal Sholat</h3><div class="sub">Tampilkan jadwal sholat hari ini langsung di layar utama HP-mu.</div>
+  <div class="artsec"><b>CARA MEMASANG</b><p>1. Cubit layar utama (atau tekan lama area kosong).<br>2. Pilih <b>Widget</b>.<br>3. Cari <b>SholatKu</b> lalu seret ke layar utama.<br>4. Widget menampilkan sholat berikutnya + hitung mundur, diperbarui otomatis tiap 15 menit.</p></div></div>
+  <div style="height:20px"></div>
+</div>
+
+<!-- ============ SUB: TENTANG ============ -->
+<!-- ============ SUB: KALKULATOR ZAKAT ============ -->
+<div class="screen subscreen" id="screen-zakat">
+  <div class="tophead"><button class="locbtn" data-back data-ic="kembali" aria-label="Kembali"></button><h1 style="font-size:20px">Kalkulator Zakat</h1></div>
+  <div class="dzikirpick" id="zakat-pick"></div>
+  <div id="zakat-body"></div>
+  <div style="height:20px"></div>
+</div>
+
+<!-- ============ SUB: WIRID ============ -->
+<div class="screen subscreen" id="screen-wirid">
+  <div class="tophead"><button class="locbtn" data-back data-ic="kembali" aria-label="Kembali"></button><h1 style="font-size:20px">Wirid Setelah Sholat</h1></div>
+  <p style="text-align:center;font-size:13px;color:var(--gray);margin:10px 20px 0">Dzikir &amp; doa yang dianjurkan dibaca setelah sholat fardhu</p>
+  <div id="wirid-list"></div>
+  <div style="height:20px"></div>
+</div>
+
+<!-- ============ SUB: MASJID TERDEKAT ============ -->
+<div class="screen subscreen" id="screen-masjid">
+  <div class="tophead"><button class="locbtn" data-back data-ic="kembali" aria-label="Kembali"></button><h1 style="font-size:20px">Masjid Terdekat</h1></div>
+  <p style="text-align:center;font-size:13px;color:var(--gray);margin:10px 20px 0" id="masjid-sub">Masjid &amp; musholla di sekitar lokasi Anda</p>
+  <div id="masjid-list" style="padding:0 16px"></div>
+  <div style="text-align:center;padding:8px 0 4px"><button class="linkbtn" id="masjid-refresh" style="font-size:13px;color:var(--blue);background:none;border:none;font-weight:700">🔄 Perbarui daftar</button></div>
+  <div style="height:20px"></div>
+</div>
+
+<div class="screen subscreen" id="screen-tentang">
+  <div class="tophead"><button class="locbtn" data-back data-ic="kembali" aria-label="Kembali"></button><h1 style="font-size:20px">Tentang</h1></div>
+  <div class="aboutlogo"><span class="sic" data-ic="bulan-sabit" style="display:inline-flex"></span></div>
+  <div class="center"><div class="appname">SholatKu</div><div class="appver" id="app-ver">Sholat, Dzikir &amp; Doa • v2.0</div><div class="copyright">© aldire__</div><br><a class="igbtn" href="#" id="ig-link">@aldire__</a></div>
+  <div class="card" style="margin-top:22px"><h3>Kenapa aplikasi ini dibuat</h3>
+  <p class="whytext" style="margin-top:8px">SholatKu dibuat untuk membantu umat Muslim menjalankan ibadah harian dengan lebih mudah: jadwal sholat yang akurat untuk 513 kota, suara adzan asli, pengingat Dhuha–Tahajud–puasa sunnah, tasbih digital, serta kumpulan doa, dzikir, kisah nabi, dan panduan dalam satu aplikasi yang ringan dan gratis.</p>
+  <p class="whytext" style="margin-top:8px;font-size:12px;color:#9AA0B4">Jadwal sholat memakai metode Kemenag RI (sumber: Aladhan API). Konten dzikir &amp; doa disusun dari sumber-sumber hadits yang umum dirujuk.</p></div>
+  <div class="card"><h3>Kredit Audio Adzan</h3>
+  <p class="credit">• “Beautiful adhan” — Adam-synagda, via Wikimedia Commons, <b>CC0 1.0</b> (domain publik).<br>• “The Adhan – Muslim Call to Prayer” — muadzin Aaqib Azeez (unggahan Atcovi), via Wikimedia Commons, <b>CC BY-SA 4.0</b>.<br>• “Eid al-Fitr Fajr azan at Malmö Mosque” — muadzin Besim Azemi (Islamic Center Malmö), via Wikimedia Commons, <b>CC BY 3.0</b> (khusus Subuh).</p></div>
+  <div style="height:20px"></div>
+</div>
+
+<nav class="bottomnav" id="bottomnav"></nav>
+</div>
+<div class="toast" id="toast"></div>
+<script src="data.js"></script>
+<script src="puasa-data.js"></script>
+<script src="wirid-data.js"></script>
+<script src="app.js"></script>
+</body>
+</html>

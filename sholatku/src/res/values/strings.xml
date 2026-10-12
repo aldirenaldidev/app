@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">SholatKu</string>
+    <string name="widget_desc">Jadwal sholat hari ini — waktu berikutnya dan hitung mundur</string>
+</resources>
