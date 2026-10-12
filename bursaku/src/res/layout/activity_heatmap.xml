@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#0B0F1A">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+            android:text="Heatmap Pasar" android:textSize="22sp" android:textStyle="bold"
+            android:textColor="#FFFFFF" />
+        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+            android:text="Pergerakan 45 emiten LQ45 sekilas" android:textSize="13sp"
+            android:textColor="#8B93A7" android:layout_marginTop="4dp" />
+
+        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+            android:orientation="horizontal" android:gravity="center_vertical"
+            android:layout_marginTop="12dp" android:layout_marginBottom="12dp">
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                android:text="▼ Turun" android:textSize="12sp" android:textColor="#EA3943" />
+            <View android:layout_width="0dp" android:layout_height="8dp" android:layout_weight="1"
+                android:layout_marginLeft="8dp" android:layout_marginRight="8dp"
+                android:background="@drawable/bg_heat_legend" />
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                android:text="Naik ▲" android:textSize="12sp" android:textColor="#16C784" />
+        </LinearLayout>
+
+        <GridView android:id="@+id/gridHeat"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:numColumns="3"
+            android:verticalSpacing="8dp"
+            android:horizontalSpacing="8dp"
+            android:stretchMode="columnWidth"
+            android:gravity="center" />
+
+        <TextView android:id="@+id/tvHeatInfo"
+            android:layout_width="match_parent" android:layout_height="wrap_content"
+            android:text="" android:textSize="12sp" android:textColor="#8B93A7"
+            android:gravity="center" android:layout_marginTop="8dp" />
+    </LinearLayout>
+
+    <include layout="@layout/bottom_nav" />
+</LinearLayout>

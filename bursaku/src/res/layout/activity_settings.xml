@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#0B0F1A"
+    android:padding="16dp">
+
+    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+        android:text="Pengaturan" android:textSize="22sp" android:textStyle="bold"
+        android:textColor="#FFFFFF" />
+
+    <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+        android:orientation="horizontal" android:gravity="center_vertical"
+        android:background="@drawable/bg_card" android:padding="16dp"
+        android:layout_marginTop="16dp">
+
+        <LinearLayout android:layout_width="0dp" android:layout_height="wrap_content"
+            android:layout_weight="1" android:orientation="vertical">
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                android:text="Auto-refresh background" android:textSize="15sp"
+                android:textStyle="bold" android:textColor="#FFFFFF" />
+            <TextView android:id="@+id/tvSettingDesc"
+                android:layout_width="wrap_content" android:layout_height="wrap_content"
+                android:text="" android:textSize="12sp" android:textColor="#8B93A7"
+                android:layout_marginTop="4dp" />
+        </LinearLayout>
+
+        <Switch android:id="@+id/swAutoRefresh"
+            android:layout_width="wrap_content" android:layout_height="wrap_content" />
+    </LinearLayout>
+
+    <Button android:id="@+id/btnAboutOpen"
+        android:layout_width="match_parent" android:layout_height="wrap_content"
+        android:text="ℹ️  Tentang Aplikasi" android:textSize="15sp"
+        android:textColor="#FFFFFF" android:background="@drawable/bg_card"
+        android:padding="16dp" android:layout_marginTop="16dp"
+        android:minHeight="56dp" />
+
+    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+        android:text="© 2026 aldire__" android:textSize="12sp" android:textColor="#8B93A7"
+        android:layout_marginTop="24dp" />
+</LinearLayout>

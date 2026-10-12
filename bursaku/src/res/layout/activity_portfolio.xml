@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#0B0F1A">
+
+<ScrollView
+    android:layout_width="match_parent"
+    android:layout_height="0dp"
+    android:layout_weight="1"
+    android:fillViewport="true">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+            android:text="Portofolio" android:textSize="22sp" android:textStyle="bold" android:textColor="#FFFFFF" />
+        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+            android:text="Catat transaksi beli/jual (1 lot = 100 lembar). Data tersimpan lokal."
+            android:textSize="12sp" android:textColor="#8B93A7" android:layout_marginTop="2dp" />
+
+        <Button android:id="@+id/btnExportPort"
+            android:layout_width="match_parent" android:layout_height="wrap_content"
+            android:text="⬇ Ekspor Portofolio (CSV)" android:textSize="14sp"
+            android:textColor="#FFFFFF" android:background="@drawable/btn_primary"
+            android:layout_marginTop="12dp" />
+
+        <!-- RINGKASAN -->
+        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+            android:orientation="horizontal" android:background="@drawable/bg_card"
+            android:padding="16dp" android:layout_marginTop="12dp" android:elevation="4dp">
+            <LinearLayout android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1"
+                android:orientation="vertical">
+                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                    android:text="Total Nilai Pasar" android:textSize="12sp" android:textColor="#8B93A7" />
+                <TextView android:id="@+id/tvPortTotal" android:layout_width="wrap_content" android:layout_height="wrap_content"
+                    android:text="Rp —" android:textSize="20sp" android:textStyle="bold" android:textColor="#FFFFFF"
+                    android:layout_marginTop="4dp" />
+            </LinearLayout>
+            <LinearLayout android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1"
+                android:orientation="vertical" android:gravity="end">
+                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                    android:text="Untung/Rugi" android:textSize="12sp" android:textColor="#8B93A7" />
+                <TextView android:id="@+id/tvPortPnl" android:layout_width="wrap_content" android:layout_height="wrap_content"
+                    android:text="—" android:textSize="18sp" android:textStyle="bold" android:textColor="#FFFFFF"
+                    android:background="@drawable/pill_up" android:paddingLeft="12dp" android:paddingRight="12dp"
+                    android:paddingTop="6dp" android:paddingBottom="6dp" android:layout_marginTop="4dp" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <!-- FORM TRANSAKSI -->
+        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+            android:orientation="vertical" android:background="@drawable/bg_card"
+            android:padding="16dp" android:layout_marginTop="12dp" android:elevation="4dp">
+
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                android:text="Catat Transaksi" android:textSize="15sp" android:textStyle="bold" android:textColor="#FFFFFF" />
+
+            <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+                android:orientation="horizontal" android:layout_marginTop="8dp">
+                <AutoCompleteTextView android:id="@+id/etTxSym" android:layout_width="0dp" android:layout_height="wrap_content"
+                    android:layout_weight="1" android:hint="Ketik kode/nama…" android:textColor="#FFFFFF"
+                    android:textColorHint="#8B93A7" android:background="@drawable/input_bg"
+                    android:padding="12dp" android:inputType="textCapCharacters"
+                    android:completionThreshold="1" android:popupBackground="#151B2E"
+                    android:dropDownWidth="match_parent" />
+                <Space android:layout_width="8dp" android:layout_height="wrap_content" />
+                <EditText android:id="@+id/etTxDate" android:layout_width="0dp" android:layout_height="wrap_content"
+                    android:layout_weight="1" android:hint="Tanggal (2026-10-07)" android:text="2026-10-07"
+                    android:textColor="#FFFFFF" android:textColorHint="#8B93A7" android:background="@drawable/input_bg"
+                    android:padding="12dp" android:inputType="date" />
+            </LinearLayout>
+
+            <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+                android:orientation="horizontal" android:layout_marginTop="8dp">
+                <EditText android:id="@+id/etTxLot" android:layout_width="0dp" android:layout_height="wrap_content"
+                    android:layout_weight="1" android:hint="Lot" android:textColor="#FFFFFF"
+                    android:textColorHint="#8B93A7" android:background="@drawable/input_bg"
+                    android:padding="12dp" android:inputType="numberDecimal" />
+                <Space android:layout_width="8dp" android:layout_height="wrap_content" />
+                <EditText android:id="@+id/etTxPrice" android:layout_width="0dp" android:layout_height="wrap_content"
+                    android:layout_weight="1" android:hint="Harga/lembar" android:textColor="#FFFFFF"
+                    android:textColorHint="#8B93A7" android:background="@drawable/input_bg"
+                    android:padding="12dp" android:inputType="numberDecimal" />
+            </LinearLayout>
+
+            <Spinner android:id="@+id/spTxType" android:layout_width="match_parent" android:layout_height="wrap_content"
+                android:layout_marginTop="8dp" android:background="@drawable/input_bg" android:padding="4dp" />
+
+            <Button android:id="@+id/btnTxAdd" android:layout_width="match_parent" android:layout_height="wrap_content"
+                android:text="Simpan Transaksi" android:textColor="#FFFFFF"
+                android:background="@drawable/btn_primary" android:layout_marginTop="8dp" />
+        </LinearLayout>
+
+        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+            android:text="Kepemilikan" android:textSize="15sp" android:textStyle="bold" android:textColor="#FFFFFF"
+            android:layout_marginTop="16dp" />
+
+        <LinearLayout android:id="@+id/listHoldings" android:layout_width="match_parent" android:layout_height="wrap_content"
+            android:orientation="vertical" android:layout_marginTop="8dp" />
+
+        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+            android:text="Riwayat Transaksi (tap untuk hapus)" android:textSize="13sp" android:textColor="#8B93A7"
+            android:layout_marginTop="16dp" />
+
+        <LinearLayout android:id="@+id/listTx" android:layout_width="match_parent" android:layout_height="wrap_content"
+            android:orientation="vertical" android:layout_marginTop="8dp" android:layout_marginBottom="16dp" />
+    </LinearLayout>
+</ScrollView>
+
+<include layout="@layout/bottom_nav" />
+</LinearLayout>

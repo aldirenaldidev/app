@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#0B0F1A"
+    android:padding="16dp">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Ranking Saham LQ45"
+        android:textSize="22sp"
+        android:textStyle="bold"
+        android:textColor="#FFFFFF" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Berdasarkan % perubahan harian &amp; volume"
+        android:textSize="12sp"
+        android:textColor="#8B93A7"
+        android:layout_marginTop="2dp" />
+
+    <!-- SEGMENTED TABS -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="16dp"
+        android:background="@drawable/seg_container"
+        android:padding="6dp">
+
+        <Button android:id="@+id/tabGainer" android:layout_width="0dp" android:layout_height="wrap_content"
+            android:layout_weight="1" android:text="Top Gainer" android:textSize="14sp" android:textStyle="bold"
+            android:minHeight="48dp" android:paddingTop="12dp" android:paddingBottom="12dp"
+            android:textColor="#FFFFFF" android:background="@drawable/seg_active" />
+        <Button android:id="@+id/tabLoser" android:layout_width="0dp" android:layout_height="wrap_content"
+            android:layout_weight="1" android:text="Top Loser" android:textSize="14sp" android:textStyle="bold"
+            android:minHeight="48dp" android:paddingTop="12dp" android:paddingBottom="12dp"
+            android:textColor="#8B93A7" android:background="@drawable/chip_inactive" />
+        <Button android:id="@+id/tabActive" android:layout_width="0dp" android:layout_height="wrap_content"
+            android:layout_weight="1" android:text="Teraktif" android:textSize="14sp" android:textStyle="bold"
+            android:minHeight="48dp" android:paddingTop="12dp" android:paddingBottom="12dp"
+            android:textColor="#8B93A7" android:background="@drawable/chip_inactive" />
+        <Button android:id="@+id/tabDiv" android:layout_width="0dp" android:layout_height="wrap_content"
+            android:layout_weight="1" android:text="Top Dividen" android:textSize="14sp" android:textStyle="bold"
+            android:minHeight="48dp" android:paddingTop="12dp" android:paddingBottom="12dp"
+            android:textColor="#8B93A7" android:background="@drawable/chip_inactive" />
+    </LinearLayout>
+
+    <Button android:id="@+id/btnExportDiv"
+        android:layout_width="match_parent" android:layout_height="wrap_content"
+        android:text="⬇ Ekspor Top Dividen (CSV)" android:textSize="14sp"
+        android:textColor="#FFFFFF" android:background="@drawable/btn_primary"
+        android:layout_marginTop="12dp" android:visibility="gone" />
+
+    <Button android:id="@+id/chipShariaOnly"
+        android:layout_width="wrap_content" android:layout_height="wrap_content"
+        android:text="✓ Syariah saja" android:textSize="14sp"
+        android:textColor="#8B93A7" android:background="@drawable/chip_inactive"
+        android:layout_marginTop="12dp" android:minHeight="44dp"
+        android:paddingLeft="18dp" android:paddingRight="18dp" />
+
+    <Button android:id="@+id/btnStopDiv"
+        android:layout_width="match_parent" android:layout_height="wrap_content"
+        android:text="⏹ Berhenti" android:textSize="14sp"
+        android:textColor="#FFFFFF" android:background="@drawable/chip_inactive"
+        android:layout_marginTop="12dp" android:visibility="gone" />
+
+    <Button android:id="@+id/btnRescanDiv"
+        android:layout_width="match_parent" android:layout_height="wrap_content"
+        android:text="↻ Pindai ulang penuh (940 emiten)" android:textSize="14sp"
+        android:textColor="#8B93A7" android:background="@drawable/chip_inactive"
+        android:layout_marginTop="8dp" android:visibility="gone" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:layout_marginTop="12dp">
+
+        <TextView
+            android:id="@+id/tvScanInfo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text=""
+            android:textSize="11sp"
+            android:textColor="#8B93A7"
+            android:layout_marginStart="8dp" />
+    </LinearLayout>
+
+    <ProgressBar
+        android:id="@+id/pbScan"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:visibility="gone"
+        android:progressTint="#E84393" />
+
+    <ListView
+        android:id="@+id/lvRank"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:layout_marginTop="8dp"
+        android:divider="@color/divider"
+        android:dividerHeight="8dp" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/disclaimer"
+        android:textSize="11sp"
+        android:textColor="#8B93A7"
+        android:gravity="center"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp" />
+
+    <!-- Banner AdMob: diisi AdsHelper.banner(); gone bila iklan gagal -->
+    <FrameLayout
+        android:id="@+id/adBanner"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:visibility="gone"
+        android:layout_marginTop="4dp"
+        android:layout_marginBottom="4dp" />
+
+    <include layout="@layout/bottom_nav" />
+</LinearLayout>

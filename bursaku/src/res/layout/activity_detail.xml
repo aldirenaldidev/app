@@ -1,0 +1,247 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#0B0F1A"
+    android:fillViewport="true">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <!-- HEADER HARGA -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:background="@drawable/bg_card"
+            android:padding="16dp"
+            android:elevation="4dp">
+
+            <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+                android:orientation="horizontal" android:gravity="center_vertical">
+
+                <FrameLayout
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:layout_marginEnd="12dp">
+                    <ImageView
+                        android:id="@+id/ivDtlLogo"
+                        android:layout_width="48dp"
+                        android:layout_height="48dp"
+                        android:scaleType="fitCenter"
+            android:padding="4dp"
+            android:background="@drawable/logo_bg"
+                        android:contentDescription="Logo emiten" />
+                    <TextView
+                        android:id="@+id/tvDtlLogoInit"
+                        android:layout_width="48dp"
+                        android:layout_height="48dp"
+                        android:gravity="center"
+                        android:text="BB"
+                        android:textSize="16sp"
+                        android:textStyle="bold"
+                        android:textColor="#FFFFFF"
+                        android:background="@drawable/pill_senja" />
+                </FrameLayout>
+
+                <LinearLayout android:layout_width="wrap_content" android:layout_height="wrap_content"
+                    android:orientation="vertical">
+                    <TextView android:id="@+id/tvDtlSymbol" android:layout_width="wrap_content" android:layout_height="wrap_content"
+                        android:text="—" android:textSize="16sp" android:textStyle="bold" android:textColor="#FFFFFF" />
+
+                    <TextView android:id="@+id/tvShariaStatus" android:layout_width="wrap_content" android:layout_height="wrap_content"
+                        android:text="" android:textSize="12sp" android:textStyle="bold" android:textColor="#16C784"
+                        android:layout_marginTop="4dp" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+                android:orientation="horizontal" android:gravity="center_vertical" android:layout_marginTop="8dp">
+                <TextView android:id="@+id/tvDtlPrice" android:layout_width="wrap_content" android:layout_height="wrap_content"
+                    android:text="—" android:textSize="30sp" android:textStyle="bold" android:textColor="#FFFFFF" />
+                <TextView android:id="@+id/tvDtlChange" android:layout_width="wrap_content" android:layout_height="wrap_content"
+                    android:text="—" android:textSize="13sp" android:textStyle="bold" android:textColor="#FFFFFF"
+                    android:background="@drawable/pill_up" android:paddingLeft="12dp" android:paddingRight="12dp"
+                    android:paddingTop="6dp" android:paddingBottom="6dp" android:layout_marginStart="12dp" />
+            </LinearLayout>
+
+            <TextView android:id="@+id/tvDtlOhlc" android:layout_width="wrap_content" android:layout_height="wrap_content"
+                android:text="" android:textSize="12sp" android:textColor="#8B93A7" android:layout_marginTop="8dp" />
+        </LinearLayout>
+
+        <!-- PEMILIH INDIKATOR -->
+        <TextView android:id="@+id/lblOverlay" android:layout_width="wrap_content" android:layout_height="wrap_content"
+            android:text="Indikator Overlay" android:textSize="13sp" android:textStyle="bold"
+            android:textColor="#FFFFFF" android:layout_marginTop="12dp" />
+        <HorizontalScrollView android:id="@+id/svOverlay" android:layout_width="match_parent" android:layout_height="wrap_content"
+            android:scrollbars="none" android:layout_marginTop="6dp">
+            <LinearLayout android:id="@+id/chipOverlayRow" android:layout_width="wrap_content"
+                android:layout_height="wrap_content" android:orientation="horizontal" />
+        </HorizontalScrollView>
+
+        <TextView android:id="@+id/lblOsc" android:layout_width="wrap_content" android:layout_height="wrap_content"
+            android:text="Osilator (maks 2 aktif)" android:textSize="13sp" android:textStyle="bold"
+            android:textColor="#FFFFFF" android:layout_marginTop="8dp" />
+        <HorizontalScrollView android:id="@+id/svOsc" android:layout_width="match_parent" android:layout_height="wrap_content"
+            android:scrollbars="none" android:layout_marginTop="6dp">
+            <LinearLayout android:id="@+id/chipOscRow" android:layout_width="wrap_content"
+                android:layout_height="wrap_content" android:orientation="horizontal" />
+        </HorizontalScrollView>
+
+        <!-- TIMEFRAME -->
+        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+            android:orientation="horizontal" android:background="@drawable/bg_subcard"
+            android:padding="4dp" android:layout_marginTop="12dp">
+            <Button android:id="@+id/btnTfDaily"
+                android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1"
+                android:text="Harian" android:textSize="14sp" android:textStyle="bold"
+                android:textColor="#FFFFFF" android:background="@drawable/seg_active"
+                android:minHeight="44dp" />
+            <Button android:id="@+id/btnTfIntra"
+                android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1"
+                android:text="Intraday" android:textSize="14sp"
+                android:textColor="#8B93A7" android:background="@drawable/chip_inactive"
+                android:minHeight="44dp" android:layout_marginStart="4dp" />
+        </LinearLayout>
+
+        <!-- GRAFIK -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:background="@drawable/bg_card"
+            android:padding="8dp"
+            android:layout_marginTop="12dp"
+            android:elevation="4dp">
+
+            <WebView android:id="@+id/wvChart"
+                android:layout_width="match_parent"
+                android:layout_height="520dp"
+                android:background="#151B2E" />
+        </LinearLayout>
+
+        <TextView android:id="@+id/tvDtlStatus" android:layout_width="match_parent" android:layout_height="wrap_content"
+            android:text="" android:textSize="12sp" android:textColor="#8B93A7" android:gravity="center"
+            android:layout_marginTop="8dp" />
+
+        <!-- FUNDAMENTAL -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:background="@drawable/bg_card"
+            android:padding="16dp"
+            android:layout_marginTop="12dp"
+            android:elevation="4dp">
+
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                android:text="Info Emiten" android:textSize="15sp" android:textStyle="bold" android:textColor="#FFFFFF" />
+            <TextView android:id="@+id/tvDtlFund" android:layout_width="wrap_content" android:layout_height="wrap_content"
+                android:text="" android:textSize="13sp" android:textColor="#8B93A7" android:layout_marginTop="8dp"
+                android:lineSpacingExtra="4dp" />
+            <TextView android:id="@+id/tvInfo" android:layout_width="wrap_content" android:layout_height="wrap_content"
+                android:text="Memuat…" android:textSize="13sp" android:textColor="#8B93A7" android:layout_marginTop="8dp"
+                android:lineSpacingExtra="4dp" />
+        </LinearLayout>
+
+        <!-- PEMEGANG SAHAM -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:background="@drawable/bg_card"
+            android:padding="16dp"
+            android:layout_marginTop="12dp"
+            android:elevation="4dp">
+
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                android:text="Pemegang Saham" android:textSize="15sp" android:textStyle="bold" android:textColor="#FFFFFF" />
+            <TextView android:id="@+id/tvHolders" android:layout_width="wrap_content" android:layout_height="wrap_content"
+                android:text="Memuat…" android:textSize="13sp" android:textColor="#8B93A7" android:layout_marginTop="8dp"
+                android:lineSpacingExtra="4dp" />
+        </LinearLayout>
+
+        <!-- KEUANGAN -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:background="@drawable/bg_card"
+            android:padding="16dp"
+            android:layout_marginTop="12dp"
+            android:elevation="4dp">
+
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                android:text="Keuangan" android:textSize="15sp" android:textStyle="bold" android:textColor="#FFFFFF" />
+
+            <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+                android:orientation="vertical" android:background="@drawable/bg_subcard"
+                android:padding="12dp" android:layout_marginTop="8dp">
+                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                    android:text="Laba Rugi" android:textSize="14sp" android:textStyle="bold" android:textColor="#FFFFFF" />
+                <TextView android:id="@+id/tvKeuLr" android:layout_width="wrap_content" android:layout_height="wrap_content"
+                    android:text="Memuat…" android:textSize="13sp" android:textColor="#8B93A7" android:layout_marginTop="6dp"
+                    android:lineSpacingExtra="4dp" />
+            </LinearLayout>
+
+            <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+                android:orientation="vertical" android:background="@drawable/bg_subcard"
+                android:padding="12dp" android:layout_marginTop="8dp">
+                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                    android:text="Neraca" android:textSize="14sp" android:textStyle="bold" android:textColor="#FFFFFF" />
+                <TextView android:id="@+id/tvKeuNeraca" android:layout_width="wrap_content" android:layout_height="wrap_content"
+                    android:text="Memuat…" android:textSize="13sp" android:textColor="#8B93A7" android:layout_marginTop="6dp"
+                    android:lineSpacingExtra="4dp" />
+            </LinearLayout>
+
+            <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+                android:orientation="vertical" android:background="@drawable/bg_subcard"
+                android:padding="12dp" android:layout_marginTop="8dp">
+                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                    android:text="Arus Kas" android:textSize="14sp" android:textStyle="bold" android:textColor="#FFFFFF" />
+                <TextView android:id="@+id/tvKeuKas" android:layout_width="wrap_content" android:layout_height="wrap_content"
+                    android:text="Memuat…" android:textSize="13sp" android:textColor="#8B93A7" android:layout_marginTop="6dp"
+                    android:lineSpacingExtra="4dp" />
+            </LinearLayout>
+
+            <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+                android:orientation="vertical" android:background="@drawable/bg_subcard"
+                android:padding="12dp" android:layout_marginTop="8dp">
+                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                    android:text="Valuasi &amp; Pertumbuhan" android:textSize="14sp" android:textStyle="bold" android:textColor="#FFFFFF" />
+                <TextView android:id="@+id/tvKeuVal" android:layout_width="wrap_content" android:layout_height="wrap_content"
+                    android:text="Memuat…" android:textSize="13sp" android:textColor="#8B93A7" android:layout_marginTop="6dp"
+                    android:lineSpacingExtra="4dp" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <!-- DIVIDEN -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:background="@drawable/bg_card"
+            android:padding="16dp"
+            android:layout_marginTop="12dp"
+            android:elevation="4dp">
+
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                android:text="Dividen" android:textSize="15sp" android:textStyle="bold" android:textColor="#FFFFFF" />
+            <TextView android:id="@+id/tvDividen" android:layout_width="wrap_content" android:layout_height="wrap_content"
+                android:text="Memuat…" android:textSize="13sp" android:textColor="#8B93A7" android:layout_marginTop="8dp"
+                android:lineSpacingExtra="4dp" />
+        </LinearLayout>
+
+        <Button android:id="@+id/btnSetAlert" android:layout_width="match_parent" android:layout_height="wrap_content"
+            android:text="🔔 Pasang Alert Harga" android:textColor="#FFFFFF"
+            android:background="@drawable/btn_primary" android:layout_marginTop="12dp" />
+
+        <TextView
+            android:layout_width="match_parent" android:layout_height="wrap_content"
+            android:text="@string/disclaimer" android:textSize="10sp" android:textColor="#8B93A7"
+            android:gravity="center" android:layout_marginTop="12dp" android:layout_marginBottom="8dp" />
+    </LinearLayout>
+</ScrollView>

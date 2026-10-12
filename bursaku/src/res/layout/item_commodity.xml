@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Kartu komoditas kompak untuk horizontal scroll di home -->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="110dp"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:background="@drawable/bg_card"
+    android:padding="12dp"
+    android:layout_marginEnd="10dp">
+
+    <TextView android:id="@+id/tvCName"
+        android:layout_width="wrap_content" android:layout_height="wrap_content"
+        android:text="Emas" android:textSize="12sp"
+        android:textColor="#9A8FA8" android:singleLine="true" />
+
+    <TextView android:id="@+id/tvCPrice"
+        android:layout_width="wrap_content" android:layout_height="wrap_content"
+        android:text="—" android:textSize="15sp"
+        android:textStyle="bold" android:textColor="#FFFFFF"
+        android:layout_marginTop="4dp" android:singleLine="true" />
+
+    <TextView android:id="@+id/tvCChg"
+        android:layout_width="wrap_content" android:layout_height="wrap_content"
+        android:text="—" android:textSize="12sp"
+        android:textStyle="bold" android:textColor="#16C784"
+        android:layout_marginTop="2dp" />
+</LinearLayout>

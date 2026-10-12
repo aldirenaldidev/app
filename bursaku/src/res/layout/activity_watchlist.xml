@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#0B0F1A"
+    android:padding="16dp">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Watchlist"
+        android:textSize="22sp"
+        android:textStyle="bold"
+        android:textColor="#FFFFFF" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Emiten pantauan pribadi — harga terisi otomatis"
+        android:textSize="12sp"
+        android:textColor="#8B93A7"
+        android:layout_marginTop="2dp" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="12dp">
+
+        <AutoCompleteTextView
+            android:id="@+id/etSymbol"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:hint="Ketik kode/nama emiten…"
+            android:textColor="#FFFFFF"
+            android:textColorHint="#8B93A7"
+            android:background="@drawable/input_bg"
+            android:padding="12dp"
+            android:inputType="textCapCharacters"
+            android:completionThreshold="1"
+            android:popupBackground="#151B2E"
+            android:dropDownWidth="match_parent" />
+
+        <Space android:layout_width="8dp" android:layout_height="wrap_content" />
+
+        <Button
+            android:id="@+id/btnAdd"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Tambah"
+            android:textColor="#FFFFFF"
+            android:background="@drawable/btn_primary" />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/tvWlStatus"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text=""
+        android:textSize="11sp"
+        android:textColor="#8B93A7"
+        android:layout_marginTop="8dp" />
+
+    <ListView
+        android:id="@+id/lvWatch"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:layout_marginTop="8dp"
+        android:divider="@color/divider"
+        android:dividerHeight="8dp" />
+
+    <!-- Banner AdMob: diisi AdsHelper.banner(); gone bila iklan gagal -->
+    <FrameLayout
+        android:id="@+id/adBanner"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:visibility="gone"
+        android:layout_marginTop="4dp"
+        android:layout_marginBottom="4dp" />
+
+    <include layout="@layout/bottom_nav" />
+</LinearLayout>

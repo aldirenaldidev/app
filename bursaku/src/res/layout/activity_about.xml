@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#0B0F1A"
+    android:fillViewport="true">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <!-- KARTU APLIKASI -->
+        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+            android:orientation="vertical" android:background="@drawable/bg_header"
+            android:padding="24dp" android:gravity="center" android:elevation="4dp">
+
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                android:text="📊" android:textSize="48sp" />
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                android:text="BursaKu" android:textSize="28sp" android:textStyle="bold" android:textColor="#FFFFFF"
+                android:layout_marginTop="8dp" />
+            <TextView android:id="@+id/tvAboutVer" android:layout_width="wrap_content" android:layout_height="wrap_content"
+                android:text="Versi 1.0" android:textSize="13sp" android:textColor="#E0E7FF"
+                android:layout_marginTop="4dp" />
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                android:text="Info pasar saham Indonesia" android:textSize="13sp" android:textColor="#E0E7FF" />
+        </LinearLayout>
+
+        <!-- HAK CIPTA -->
+        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+            android:orientation="vertical" android:background="@drawable/bg_card"
+            android:padding="20dp" android:layout_marginTop="12dp" android:elevation="4dp"
+            android:gravity="center">
+
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                android:text="© 2026 aldire__" android:textSize="18sp" android:textStyle="bold" android:textColor="#FFFFFF" />
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                android:text="Hak cipta dilindungi undang-undang."
+                android:textSize="13sp" android:textColor="#8B93A7" android:layout_marginTop="4dp" />
+        </LinearLayout>
+
+        <!-- DEVELOPER -->
+        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+            android:orientation="vertical" android:background="@drawable/bg_card"
+            android:padding="20dp" android:layout_marginTop="12dp" android:elevation="4dp">
+
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                android:text="Developer" android:textSize="15sp" android:textStyle="bold" android:textColor="#FFFFFF" />
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                android:text="@aldire__" android:textSize="22sp" android:textStyle="bold" android:textColor="#E84393"
+                android:layout_marginTop="8dp" />
+
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                android:text="Ikuti saya di:" android:textSize="12sp" android:textColor="#8B93A7"
+                android:layout_marginTop="12dp" />
+
+            <Button android:id="@+id/btnIg" android:layout_width="match_parent"
+                android:layout_height="wrap_content" android:minHeight="56dp"
+                android:text="@aldire__" android:textColor="#FFFFFF"
+                android:textSize="16sp" android:textStyle="bold"
+                android:background="@drawable/btn_instagram"
+                android:drawableLeft="@drawable/ic_instagram"
+                android:drawablePadding="12dp" android:gravity="center"
+                android:layout_marginTop="8dp" />
+        </LinearLayout>
+
+        <!-- KENAPA BURSAKU DIBUAT -->
+        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+            android:orientation="vertical" android:background="@drawable/bg_card"
+            android:padding="20dp" android:layout_marginTop="12dp" android:elevation="4dp">
+
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                android:text="Kenapa BursaKu dibuat" android:textSize="15sp" android:textStyle="bold" android:textColor="#FFFFFF" />
+            <TextView android:layout_width="match_parent" android:layout_height="wrap_content"
+                android:text="BursaKu dibuat dengan satu tujuan sederhana: memberikan investor ritel Indonesia akses ke analisa saham yang lengkap — teknikal dan fundamental — tanpa biaya berlangganan yang mahal. Data pasar seharusnya bisa diakses siapa saja, bukan hanya mereka yang mampu membayar terminal data premium."
+                android:textSize="13sp" android:textColor="#C6CEDB" android:lineSpacingExtra="3dp"
+                android:layout_marginTop="8dp" />
+        </LinearLayout>
+
+        <TextView android:layout_width="match_parent" android:layout_height="wrap_content"
+            android:text="@string/disclaimer" android:textSize="10sp" android:textColor="#8B93A7"
+            android:gravity="center" android:layout_marginTop="16dp" android:layout_marginBottom="8dp" />
+    </LinearLayout>
+</ScrollView>

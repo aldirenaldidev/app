@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#0B0F1A"
+    android:padding="16dp">
+
+    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+        android:text="Alert Harga" android:textSize="22sp" android:textStyle="bold" android:textColor="#FFFFFF" />
+    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+        android:text="Dapat notifikasi saat harga menyentuh target (dicek tiap 15 menit saat jam bursa)"
+        android:textSize="12sp" android:textColor="#8B93A7" android:layout_marginTop="2dp" />
+
+    <!-- FORM -->
+    <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+        android:orientation="vertical" android:background="@drawable/bg_card"
+        android:padding="16dp" android:layout_marginTop="12dp" android:elevation="4dp">
+
+        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <AutoCompleteTextView android:id="@+id/etAlertSym" android:layout_width="0dp" android:layout_height="wrap_content"
+                android:layout_weight="1" android:hint="Ketik kode/nama…" android:textColor="#FFFFFF"
+                android:textColorHint="#8B93A7" android:background="@drawable/input_bg"
+                android:padding="12dp" android:inputType="textCapCharacters"
+                android:completionThreshold="1" android:popupBackground="#151B2E"
+                android:dropDownWidth="match_parent" />
+            <Space android:layout_width="8dp" android:layout_height="wrap_content" />
+            <EditText android:id="@+id/etAlertTarget" android:layout_width="0dp" android:layout_height="wrap_content"
+                android:layout_weight="1" android:hint="Target harga" android:textColor="#FFFFFF"
+                android:textColorHint="#8B93A7" android:background="@drawable/input_bg"
+                android:padding="12dp" android:inputType="numberDecimal" />
+        </LinearLayout>
+
+        <TextView android:id="@+id/tvAlertPrice" android:layout_width="match_parent" android:layout_height="wrap_content"
+            android:text="Harga saat ini: —" android:textSize="12sp" android:textColor="#8B93A7"
+            android:layout_marginTop="6dp" />
+
+        <Spinner android:id="@+id/spAlertDir" android:layout_width="match_parent" android:layout_height="wrap_content"
+            android:layout_marginTop="8dp" android:background="@drawable/input_bg" android:padding="4dp" />
+
+        <Button android:id="@+id/btnAlertAdd" android:layout_width="match_parent" android:layout_height="wrap_content"
+            android:text="Pasang Alert" android:textColor="#FFFFFF"
+            android:background="@drawable/btn_primary" android:layout_marginTop="8dp" />
+    </LinearLayout>
+
+    <ListView android:id="@+id/lvAlert" android:layout_width="match_parent" android:layout_height="0dp"
+        android:layout_weight="1" android:layout_marginTop="12dp"
+        android:divider="@color/divider" android:dividerHeight="8dp" />
+
+    <include layout="@layout/bottom_nav" />
+</LinearLayout>

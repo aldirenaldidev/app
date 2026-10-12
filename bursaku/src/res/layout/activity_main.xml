@@ -1,0 +1,209 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Dashboard v2 "Senja Berani": sapaan + hero IHSG + portofolio + watchlist + komoditas -->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/bg">
+
+<ScrollView
+    android:layout_width="match_parent"
+    android:layout_height="0dp"
+    android:layout_weight="1"
+    android:fillViewport="true"
+    android:clipToPadding="false">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <!-- SAPAAN -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:layout_marginTop="8dp">
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical">
+                <TextView android:id="@+id/tvGreeting"
+                    android:layout_width="wrap_content" android:layout_height="wrap_content"
+                    android:text="Selamat sore," android:textSize="16sp"
+                    android:textColor="@color/text2" />
+                <TextView
+                    android:layout_width="wrap_content" android:layout_height="wrap_content"
+                    android:text="Investor" android:textSize="26sp"
+                    android:textStyle="bold" android:textColor="@color/text" />
+            </LinearLayout>
+
+            <TextView android:id="@+id/btnNewsTop"
+                android:layout_width="44dp" android:layout_height="44dp"
+                android:gravity="center" android:text="🔔"
+                android:textSize="22sp" />
+
+            <TextView android:id="@+id/btnSettingsTop"
+                android:layout_width="44dp" android:layout_height="44dp"
+                android:gravity="center" android:text="⚙️"
+                android:textSize="22sp" />
+        </LinearLayout>
+
+        <!-- HERO IHSG -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:background="@drawable/bg_senja_hero"
+            android:padding="20dp"
+            android:layout_marginTop="16dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical">
+                <TextView
+                    android:layout_width="wrap_content" android:layout_height="wrap_content"
+                    android:text="IHSG" android:textSize="14sp"
+                    android:textStyle="bold" android:textColor="#FFFFFF" />
+                <TextView android:id="@+id/tvIhsgLive"
+                    android:layout_width="wrap_content" android:layout_height="wrap_content"
+                    android:text=" • LIVE" android:textSize="14sp"
+                    android:textStyle="bold" android:textColor="#FFFFFF"
+                    android:layout_marginStart="4dp" />
+                <View android:id="@+id/dotMarket"
+                    android:layout_width="8dp" android:layout_height="8dp"
+                    android:background="@drawable/dot_live"
+                    android:layout_marginStart="8dp" />
+            </LinearLayout>
+
+            <TextView android:id="@+id/tvIhsgVal"
+                android:layout_width="wrap_content" android:layout_height="wrap_content"
+                android:text="—" android:textSize="38sp"
+                android:textStyle="bold" android:textColor="#FFFFFF"
+                android:layout_marginTop="4dp" />
+
+            <TextView android:id="@+id/tvIhsgChg"
+                android:layout_width="wrap_content" android:layout_height="wrap_content"
+                android:text="—" android:textSize="16sp"
+                android:textStyle="bold" android:textColor="#16C784" />
+
+            <TextView android:id="@+id/tvIhsgTime"
+                android:layout_width="wrap_content" android:layout_height="wrap_content"
+                android:text="Hari ini" android:textSize="13sp"
+                android:textColor="#FFFFFF" android:alpha="0.8"
+                android:layout_marginTop="2dp" />
+
+            <com.flexurio.bursaku.SparkView
+                android:id="@+id/sparkIhsgHero"
+                android:layout_width="match_parent"
+                android:layout_height="110dp"
+                android:layout_marginTop="8dp" />
+        </LinearLayout>
+
+        <!-- KARTU PORTOFOLIO -->
+        <LinearLayout android:id="@+id/cardPortfolio"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:background="@drawable/bg_card"
+            android:padding="20dp"
+            android:layout_marginTop="14dp">
+
+            <TextView
+                android:layout_width="wrap_content" android:layout_height="wrap_content"
+                android:text="Total Portofolio" android:textSize="14sp"
+                android:textColor="@color/text2" />
+
+            <TextView android:id="@+id/tvPortVal"
+                android:layout_width="wrap_content" android:layout_height="wrap_content"
+                android:text="Rp —" android:textSize="30sp"
+                android:textStyle="bold" android:textColor="@color/text"
+                android:layout_marginTop="2dp" />
+
+            <TextView android:id="@+id/tvPortPnl"
+                android:layout_width="wrap_content" android:layout_height="wrap_content"
+                android:text="—" android:textSize="14sp"
+                android:textStyle="bold" android:textColor="@color/green"
+                android:layout_marginTop="2dp" />
+
+            <TextView android:id="@+id/tvPortInfo"
+                android:layout_width="wrap_content" android:layout_height="wrap_content"
+                android:text="Ketuk untuk kelola →" android:textSize="13sp"
+                android:textColor="@color/primary"
+                android:layout_marginTop="6dp" />
+        </LinearLayout>
+
+        <!-- WATCHLIST -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="10dp">
+            <TextView
+                android:layout_width="0dp" android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Watchlist" android:textSize="20sp"
+                android:textStyle="bold" android:textColor="@color/text" />
+            <TextView android:id="@+id/btnWatchAll"
+                android:layout_width="wrap_content" android:layout_height="wrap_content"
+                android:text="Lihat semua  ›" android:textSize="14sp"
+                android:textColor="@color/primary" />
+        </LinearLayout>
+
+        <LinearLayout android:id="@+id/llWatchPreview"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" />
+
+        <!-- KOMODITAS -->
+        <TextView
+            android:layout_width="wrap_content" android:layout_height="wrap_content"
+            android:text="Komoditas" android:textSize="20sp"
+            android:textStyle="bold" android:textColor="@color/text"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp" />
+
+        <HorizontalScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:scrollbars="none"
+            android:clipToPadding="false">
+            <LinearLayout android:id="@+id/llCommodities"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal" />
+        </HorizontalScrollView>
+
+        <TextView android:id="@+id/tvUpdated"
+            android:layout_width="wrap_content" android:layout_height="wrap_content"
+            android:text="" android:textSize="12sp"
+            android:textColor="@color/text2"
+            android:layout_marginTop="14dp"
+            android:layout_marginBottom="90dp" />
+    </LinearLayout>
+</ScrollView>
+
+<!-- BOTTOM NAV FLOATING -->
+<FrameLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingLeft="16dp" android:paddingRight="16dp"
+    android:paddingBottom="14dp"
+    android:background="@android:color/transparent">
+    <include layout="@layout/bottom_nav" />
+</FrameLayout>
+
+<!-- AD BANNER -->
+<FrameLayout android:id="@+id/adBanner"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content" />
+
+</LinearLayout>

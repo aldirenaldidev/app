@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Bottom navigation modern: bar #151B2E sudut atas membulat,
+     item aktif = pill gradient biru elektrik + ikon/label putih.
+     Ikon: vector Material Symbols rounded (bukan emoji).
+     Label: 11sp satu baris, rata tengah, tidak terpotong. -->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:background="@drawable/bg_bottom_nav"
+    android:elevation="8dp"
+    android:gravity="center_vertical"
+    android:paddingLeft="8dp"
+    android:paddingRight="8dp"
+    android:paddingTop="8dp"
+    android:paddingBottom="10dp">
+
+    <LinearLayout
+        android:id="@+id/navPasar"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:minHeight="64dp"
+        android:paddingTop="8dp"
+        android:paddingBottom="8dp"
+        android:paddingLeft="1dp"
+        android:paddingRight="1dp">
+        <ImageView android:id="@+id/navPasarIcon"
+            android:layout_width="26dp" android:layout_height="26dp"
+            android:src="@drawable/ic_nav_pasar"
+            android:tint="#8B93A7"
+            android:contentDescription="Pasar" />
+        <TextView android:id="@+id/navPasarLabel"
+            android:layout_width="match_parent" android:layout_height="wrap_content"
+            android:text="Pasar" android:textSize="11sp"
+            android:singleLine="true" android:ellipsize="none"
+            android:gravity="center" android:letterSpacing="-0.04"
+            android:includeFontPadding="false"
+            android:layout_marginTop="3dp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/navRanking"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:minHeight="64dp"
+        android:paddingTop="8dp"
+        android:paddingBottom="8dp"
+        android:paddingLeft="1dp"
+        android:paddingRight="1dp">
+        <ImageView android:id="@+id/navRankingIcon"
+            android:layout_width="26dp" android:layout_height="26dp"
+            android:src="@drawable/ic_nav_ranking"
+            android:tint="#8B93A7"
+            android:contentDescription="Ranking" />
+        <TextView android:id="@+id/navRankingLabel"
+            android:layout_width="match_parent" android:layout_height="wrap_content"
+            android:text="Ranking" android:textSize="11sp"
+            android:singleLine="true" android:ellipsize="none"
+            android:gravity="center" android:letterSpacing="-0.04"
+            android:includeFontPadding="false"
+            android:layout_marginTop="3dp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/navWatchlist"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:minHeight="64dp"
+        android:paddingTop="8dp"
+        android:paddingBottom="8dp"
+        android:paddingLeft="1dp"
+        android:paddingRight="1dp">
+        <ImageView android:id="@+id/navWatchlistIcon"
+            android:layout_width="26dp" android:layout_height="26dp"
+            android:src="@drawable/ic_nav_watchlist"
+            android:tint="#8B93A7"
+            android:contentDescription="Watchlist" />
+        <TextView android:id="@+id/navWatchlistLabel"
+            android:layout_width="match_parent" android:layout_height="wrap_content"
+            android:text="Watchlist" android:textSize="11sp"
+            android:singleLine="true" android:ellipsize="none"
+            android:gravity="center" android:letterSpacing="-0.04"
+            android:includeFontPadding="false"
+            android:layout_marginTop="3dp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/navAlert"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:minHeight="64dp"
+        android:paddingTop="8dp"
+        android:paddingBottom="8dp"
+        android:paddingLeft="1dp"
+        android:paddingRight="1dp">
+        <ImageView android:id="@+id/navAlertIcon"
+            android:layout_width="26dp" android:layout_height="26dp"
+            android:src="@drawable/ic_nav_alert"
+            android:tint="#8B93A7"
+            android:contentDescription="Alert" />
+        <TextView android:id="@+id/navAlertLabel"
+            android:layout_width="match_parent" android:layout_height="wrap_content"
+            android:text="Alert" android:textSize="11sp"
+            android:singleLine="true" android:ellipsize="none"
+            android:gravity="center" android:letterSpacing="-0.04"
+            android:includeFontPadding="false"
+            android:layout_marginTop="3dp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/navPortfolio"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:minHeight="64dp"
+        android:paddingTop="8dp"
+        android:paddingBottom="8dp"
+        android:paddingLeft="1dp"
+        android:paddingRight="1dp">
+        <ImageView android:id="@+id/navPortfolioIcon"
+            android:layout_width="26dp" android:layout_height="26dp"
+            android:src="@drawable/ic_nav_portfolio"
+            android:tint="#8B93A7"
+            android:contentDescription="Portofolio" />
+        <TextView android:id="@+id/navPortfolioLabel"
+            android:layout_width="match_parent" android:layout_height="wrap_content"
+            android:text="Portofolio" android:textSize="11sp"
+            android:singleLine="true" android:ellipsize="none"
+            android:gravity="center" android:letterSpacing="-0.04"
+            android:includeFontPadding="false"
+            android:layout_marginTop="3dp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/navAnalisa"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:minHeight="64dp"
+        android:paddingTop="8dp"
+        android:paddingBottom="8dp"
+        android:paddingLeft="1dp"
+        android:paddingRight="1dp">
+        <ImageView android:id="@+id/navAnalisaIcon"
+            android:layout_width="26dp" android:layout_height="26dp"
+            android:src="@drawable/ic_nav_analisa"
+            android:tint="#8B93A7"
+            android:contentDescription="Analisa" />
+        <TextView android:id="@+id/navAnalisaLabel"
+            android:layout_width="match_parent" android:layout_height="wrap_content"
+            android:text="Analisa" android:textSize="11sp"
+            android:singleLine="true" android:ellipsize="none"
+            android:gravity="center" android:letterSpacing="-0.04"
+            android:includeFontPadding="false"
+            android:layout_marginTop="3dp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/navHeatmap"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:minHeight="64dp"
+        android:paddingTop="8dp"
+        android:paddingBottom="8dp"
+        android:paddingLeft="1dp"
+        android:paddingRight="1dp">
+        <ImageView android:id="@+id/navHeatmapIcon"
+            android:layout_width="26dp" android:layout_height="26dp"
+            android:src="@drawable/ic_nav_heatmap"
+            android:tint="#8B93A7"
+            android:contentDescription="Heatmap" />
+        <TextView android:id="@+id/navHeatmapLabel"
+            android:layout_width="match_parent" android:layout_height="wrap_content"
+            android:text="Heatmap" android:textSize="11sp"
+            android:singleLine="true" android:ellipsize="none"
+            android:gravity="center" android:letterSpacing="-0.04"
+            android:includeFontPadding="false"
+            android:layout_marginTop="3dp" />
+    </LinearLayout>
+</LinearLayout>
